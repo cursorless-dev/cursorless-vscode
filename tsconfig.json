@@ -27,6 +27,9 @@
       "path": "./packages/cursorless-everywhere-talon-e2e"
     },
     {
+      "path": "./packages/cursorless-jetbrains"
+    },
+    {
       "path": "./packages/cursorless-neovim"
     },
     {
