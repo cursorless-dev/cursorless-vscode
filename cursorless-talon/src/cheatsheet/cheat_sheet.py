@@ -128,6 +128,7 @@ def cursorless_cheat_sheet_get_json():
                         "wrapper_only_paired_delimiter",
                         "wrapper_selectable_paired_delimiter",
                         "selectable_only_paired_delimiter",
+                        "surrounding_pair_scope_type",
                     ],
                     "pairedDelimiter",
                 ),
