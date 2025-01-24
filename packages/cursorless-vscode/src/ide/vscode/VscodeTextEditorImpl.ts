@@ -51,7 +51,11 @@ export class VscodeTextEditorImpl implements EditableTextEditor {
 
   async setSelections(
     rawSelections: Selection[],
-    { focusEditor = false, revealRange = true }: SetSelectionsOpts = {},
+    {
+      focusEditor = false,
+      revealRange = true,
+      highlightWord = false,
+    }: SetSelectionsOpts = {},
   ): Promise<void> {
     const selections = uniqWithHash(
       rawSelections,
@@ -84,6 +88,10 @@ export class VscodeTextEditorImpl implements EditableTextEditor {
 
     if (revealRange) {
       await this.revealRange(this.selections[0]);
+    }
+
+    if (highlightWord) {
+      vscode.commands.executeCommand("editor.action.wordHighlight.trigger");
     }
   }
 

@@ -21,9 +21,14 @@ abstract class SetSelectionBase implements SimpleAction {
         ? editor.selections.concat(targetSelections)
         : targetSelections;
 
+    const highlightWord =
+      this.selectionMode === "set" &&
+      selections.length === 1 &&
+      selections[0].isEmpty;
+
     await ide()
       .getEditableTextEditor(editor)
-      .setSelections(selections, { focusEditor: true });
+      .setSelections(selections, { focusEditor: true, highlightWord });
 
     return {
       thatTargets: targets,
