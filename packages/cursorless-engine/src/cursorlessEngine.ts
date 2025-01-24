@@ -1,10 +1,14 @@
 import type {
   Command,
   CommandServerApi,
+  Direction,
   Hats,
   IDE,
   ScopeProvider,
+  ScopeType,
+  TextEditor,
 } from "@cursorless/common";
+import { Position } from "@cursorless/common";
 import {
   ensureCommandShape,
   type RawTreeSitterQueryProvider,
@@ -34,6 +38,11 @@ import {
 } from "./languages/LanguageDefinitions";
 import { ModifierStageFactoryImpl } from "./processTargets/ModifierStageFactoryImpl";
 import { ScopeHandlerFactoryImpl } from "./processTargets/modifiers/scopeHandlers";
+import type { TargetScope } from "./processTargets/modifiers/scopeHandlers/scope.types";
+import type {
+  ScopeHandler,
+  ScopeIteratorRequirements,
+} from "./processTargets/modifiers/scopeHandlers/scopeHandler.types";
 import { runCommand } from "./runCommand";
 import { runIntegrationTests } from "./runIntegrationTests";
 import { ScopeInfoProvider } from "./scopeProviders/ScopeInfoProvider";
@@ -42,6 +51,22 @@ import { ScopeRangeWatcher } from "./scopeProviders/ScopeRangeWatcher";
 import { ScopeSupportChecker } from "./scopeProviders/ScopeSupportChecker";
 import { ScopeSupportWatcher } from "./scopeProviders/ScopeSupportWatcher";
 import { injectIde } from "./singletons/ide.singleton";
+
+export class Testing implements ScopeHandler {
+  scopeType = { type: "document" } as ScopeType;
+  iterationScopeType = { type: "document" } as ScopeType;
+  includeAdjacentInEvery = false;
+
+  generateScopes(
+    editor: TextEditor,
+    position: Position,
+    direction: Direction,
+    requirements: ScopeIteratorRequirements,
+  ): Iterable<TargetScope> {
+    console.log(requirements.distalPosition);
+    throw new Error("Method not implemented.");
+  }
+}
 
 export interface EngineProps {
   ide: IDE;
@@ -63,6 +88,15 @@ export async function createCursorlessEngine({
   snippets = new DisabledSnippets(),
 }: EngineProps): Promise<CursorlessEngine> {
   injectIde(ide);
+
+  const test: ScopeHandler = new Testing();
+  console.log(test);
+  test.generateScopes(
+    null as unknown as TextEditor,
+    new Position(0, 0),
+    "forward",
+    {},
+  );
 
   const debug = new Debug(ide);
   const rangeUpdater = new RangeUpdater();
