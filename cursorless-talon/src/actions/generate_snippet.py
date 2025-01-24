@@ -15,6 +15,13 @@ tag: user.cursorless_use_community_snippets
 
 @mod.action_class
 class Actions:
+    def private_cursorless_migrate_snippets():
+        """Migrate snippets from Cursorless to community format"""
+        actions.user.private_cursorless_run_rpc_command_no_wait(
+            "cursorless.migrateSnippets",
+            str(get_directory_path()),
+        )
+
     def private_cursorless_generate_snippet_action(target: CursorlessExplicitTarget):  # pyright: ignore [reportGeneralTypeIssues]
         """Generate a snippet from the given target"""
         actions.user.private_cursorless_command_no_wait(

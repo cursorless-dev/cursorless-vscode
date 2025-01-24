@@ -19,6 +19,10 @@ Note that this line will also disable any Cursorless snippets defined in your Cu
 
 Cursorless has its own experimental snippet engine that allows you to both insert snippets and wrap targets with snippets. Cursorless ships with a few built-in snippets, but users can also use their own snippets.
 
+## Migrate Cursorless snippet to community
+
+Say `"Cursorless migrate snippets"` to convert your existing experimental Cursorless snippet json files to the new community snippet format.
+
 ## Using snippets
 
 ### Wrapping a target with snippets

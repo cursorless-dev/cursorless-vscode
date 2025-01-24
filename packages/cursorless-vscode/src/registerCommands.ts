@@ -19,12 +19,14 @@ import type {
 import * as vscode from "vscode";
 import type { InstallationDependencies } from "./InstallationDependencies";
 import type { ScopeVisualizer } from "./ScopeVisualizerCommandApi";
+import type { VscodeSnippets } from "./VscodeSnippets";
 import type { VscodeTutorial } from "./VscodeTutorial";
 import { showDocumentation, showQuickPick } from "./commands";
 import type { VscodeIDE } from "./ide/vscode/VscodeIDE";
 import type { VscodeHats } from "./ide/vscode/hats/VscodeHats";
 import type { KeyboardCommands } from "./keyboard/KeyboardCommands";
 import { logQuickActions } from "./logQuickActions";
+import { migrateSnippets } from "./migrateSnippets";
 
 export function registerCommands(
   extensionContext: vscode.ExtensionContext,
@@ -39,6 +41,7 @@ export function registerCommands(
   tutorial: VscodeTutorial,
   installationDependencies: InstallationDependencies,
   storedTargets: StoredTargetMap,
+  snippets: VscodeSnippets,
 ): void {
   const runCommandWrapper = async (run: () => Promise<unknown>) => {
     try {
@@ -85,6 +88,8 @@ export function registerCommands(
     ["cursorless.showQuickPick"]: showQuickPick,
     ["cursorless.showDocumentation"]: showDocumentation,
     ["cursorless.showInstallationDependencies"]: installationDependencies.show,
+
+    ["cursorless.migrateSnippets"]: (dir) => migrateSnippets(snippets, dir),
 
     ["cursorless.private.logQuickActions"]: logQuickActions,
 

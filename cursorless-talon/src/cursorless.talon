@@ -47,3 +47,9 @@ tutorial resume: user.private_cursorless_tutorial_resume()
 tutorial (list | close): user.private_cursorless_tutorial_list()
 tutorial <number_small>:
     user.private_cursorless_tutorial_start_by_number(number_small)
+
+{user.cursorless_homophone} migrate snippets:
+    user.private_cursorless_migrate_snippets()
+
+# TODO:
+migrate:    user.private_cursorless_migrate_snippets()

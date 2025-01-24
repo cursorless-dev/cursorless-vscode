@@ -88,6 +88,7 @@ export async function registerCommands(
     ["cursorless.showQuickPick"]: dummyCommandHandler,
     ["cursorless.showDocumentation"]: dummyCommandHandler,
     ["cursorless.showInstallationDependencies"]: dummyCommandHandler,
+    ["cursorless.migrateSnippets"]: dummyCommandHandler,
     ["cursorless.private.logQuickActions"]: dummyCommandHandler,
 
     // Hats
