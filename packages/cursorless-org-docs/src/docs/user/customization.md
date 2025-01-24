@@ -204,7 +204,3 @@ _You can disable the default Cursorless reformat command by prefixing the spoken
 <user.formatters> form <user.cursorless_target>:
     user.cursorless_reformat(cursorless_target, formatters)
 ```
-
-### Disable legacy destination grammar
-
-The grammar currently supports `paste to before air`. This grammar is considered deprecated/legacy and replaced by `paste before air`. You can today disable this legacy grammar by enabling the tag `user.cursorless_disable_legacy_destination`
