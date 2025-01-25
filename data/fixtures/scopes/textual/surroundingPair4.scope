@@ -1,0 +1,44 @@
+(a < b)
+(c > d)
+---
+
+[#1 Content] =
+[#1 Removal] =
+[#1 Domain] = 0:0-0:7
+  >-------<
+0| (a < b)
+
+[#1 Interior] = 0:1-0:6
+   >-----<
+0| (a < b)
+
+[#1 Boundary L] = 0:0-0:1
+  >-<
+0| (a < b)
+
+[#1 Boundary R] = 0:6-0:7
+        >-<
+0| (a < b)
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] =
+[#2 Removal] =
+[#2 Domain] = 1:0-1:7
+  >-------<
+1| (c > d)
+
+[#2 Interior] = 1:1-1:6
+   >-----<
+1| (c > d)
+
+[#2 Boundary L] = 1:0-1:1
+  >-<
+1| (c > d)
+
+[#2 Boundary R] = 1:6-1:7
+        >-<
+1| (c > d)
+
+[#2 Insertion delimiter] = " "

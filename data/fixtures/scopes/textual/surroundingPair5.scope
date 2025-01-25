@@ -1,0 +1,38 @@
+(  [  )  ]
+---
+
+[Content] =
+[Domain] = 0:0-0:7
+  >-------<
+0| (  [  )  ]
+
+[Removal] = 0:0-0:9
+  >---------<
+0| (  [  )  ]
+
+[Trailing delimiter] = 0:7-0:9
+         >--<
+0| (  [  )  ]
+
+[Interior: Content] = 0:3-0:4
+     >-<
+0| (  [  )  ]
+[Interior: Removal] = 0:1-0:6
+   >-----<
+0| (  [  )  ]
+
+[Boundary L: Content] = 0:0-0:1
+  >-<
+0| (  [  )  ]
+[Boundary L: Removal] = 0:0-0:3
+  >---<
+0| (  [  )  ]
+
+[Boundary R: Content] = 0:6-0:7
+        >-<
+0| (  [  )  ]
+[Boundary R: Removal] = 0:6-0:9
+        >---<
+0| (  [  )  ]
+
+[Insertion delimiter] = " "

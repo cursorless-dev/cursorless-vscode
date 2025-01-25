@@ -1,5 +1,5 @@
-import type { SimpleSurroundingPairName } from "@cursorless/common";
-import { DefaultMap } from "@cursorless/common";
+import type { Range } from "@cursorless/common";
+import findLastIndex from "lodash-es/findLastIndex";
 import type { DelimiterOccurrence, SurroundingPairOccurrence } from "./types";
 
 /**
@@ -13,14 +13,7 @@ export function getSurroundingPairOccurrences(
   delimiterOccurrences: DelimiterOccurrence[],
 ): SurroundingPairOccurrence[] {
   const result: SurroundingPairOccurrence[] = [];
-
-  /**
-   * A map from delimiter names to occurrences of the opening delimiter
-   */
-  const openingDelimiterOccurrences = new DefaultMap<
-    SimpleSurroundingPairName,
-    DelimiterOccurrence[]
-  >(() => []);
+  const openingDelimitersStack: DelimiterOccurrence[] = [];
 
   for (const occurrence of delimiterOccurrences) {
     const {
@@ -29,48 +22,29 @@ export function getSurroundingPairOccurrences(
       range,
     } = occurrence;
 
-    let openingDelimiters = openingDelimiterOccurrences.get(delimiterName);
-
-    if (isSingleLine) {
-      // If single line, remove all opening delimiters that are not on the same line
-      // as occurrence
-      openingDelimiters = openingDelimiters.filter(
-        (openingDelimiter) =>
-          openingDelimiter.range.start.line === range.start.line,
-      );
-      openingDelimiterOccurrences.set(delimiterName, openingDelimiters);
-    }
-
-    /**
-     * A list of opening delimiters that are relevant to the current occurrence.
-     * We exclude delimiters that are not in the same text fragment range as the
-     * current occurrence.
-     */
-    const relevantOpeningDelimiters = openingDelimiters.filter(
-      (openingDelimiter) =>
-        (textFragmentRange == null &&
-          openingDelimiter.textFragmentRange == null) ||
-        (textFragmentRange != null &&
-          openingDelimiter.textFragmentRange != null &&
-          openingDelimiter.textFragmentRange.isRangeEqual(textFragmentRange)),
-    );
-
-    if (
-      side === "left" ||
-      (side === "unknown" && relevantOpeningDelimiters.length % 2 === 0)
-    ) {
-      openingDelimiters.push(occurrence);
+    if (side === "left") {
+      openingDelimitersStack.push(occurrence);
     } else {
-      const openingDelimiter = relevantOpeningDelimiters.at(-1);
+      const openingDelimiterIndex = findLastIndex(
+        openingDelimitersStack,
+        (o) =>
+          o.delimiterInfo.delimiterName === delimiterName &&
+          isSameTextFragment(o.textFragmentRange, textFragmentRange) &&
+          isValidLine(isSingleLine, o.range, range),
+      );
 
-      if (openingDelimiter == null) {
+      if (openingDelimiterIndex === -1) {
+        // When side is unknown and we can't find an opening delimiter, that means this is the opening delimiter.
+        if (side === "unknown") {
+          openingDelimitersStack.push(occurrence);
+        }
         continue;
       }
 
-      openingDelimiters.splice(
-        openingDelimiters.lastIndexOf(openingDelimiter),
-        1,
-      );
+      const openingDelimiter = openingDelimitersStack[openingDelimiterIndex];
+
+      // Pop stack up to and including the opening delimiter
+      openingDelimitersStack.length = openingDelimiterIndex;
 
       result.push({
         delimiterName: delimiterName,
@@ -81,4 +55,18 @@ export function getSurroundingPairOccurrences(
   }
 
   return result;
+}
+
+function isSameTextFragment(
+  a: Range | undefined,
+  b: Range | undefined,
+): boolean {
+  if (a == null || b == null) {
+    return a === b;
+  }
+  return a.isRangeEqual(b);
+}
+
+function isValidLine(isSingleLine: boolean, a: Range, b: Range): boolean {
+  return !isSingleLine || a.start.line === b.start.line;
 }
