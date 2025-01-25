@@ -29,7 +29,9 @@ finalState:
   documentContents: |-
     {
         :foo "bar",
+        ;; hello
+    ,
     }
   selections:
-    - anchor: {line: 2, character: 1}
-      active: {line: 2, character: 1}
+    - anchor: {line: 4, character: 1}
+      active: {line: 4, character: 1}

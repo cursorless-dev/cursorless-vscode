@@ -28,7 +28,9 @@ initialState:
 finalState:
   documentContents: |-
     {
-        ,
+        
+        ;; hello
+        "whatever",
     }
   selections:
     - anchor: {line: 1, character: 4}

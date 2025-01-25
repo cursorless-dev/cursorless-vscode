@@ -21,7 +21,7 @@ initialState:
       start: {line: 0, character: 2}
       end: {line: 0, character: 5}
 finalState:
-  documentContents: "{}"
+  documentContents: "{ :baz \"whatever\"}"
   selections:
     - anchor: {line: 0, character: 1}
       active: {line: 0, character: 1}
