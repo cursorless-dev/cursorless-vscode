@@ -7,10 +7,16 @@ export const pythonScopeSupport: LanguageScopeSupportFacetMap = {
   "name.foreach": supported,
   "name.resource": supported,
   "name.resource.iteration": supported,
+  "name.argument.actual": supported,
+  "name.argument.actual.iteration": supported,
+
   "value.foreach": supported,
   "value.yield": supported,
   "value.resource": supported,
   "value.resource.iteration": supported,
+  "value.argument.actual": supported,
+  "value.argument.actual.iteration": supported,
+
   namedFunction: supported,
   anonymousFunction: supported,
   disqualifyDelimiter: supported,

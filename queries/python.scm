@@ -626,9 +626,9 @@
 ) @argumentOrParameter.iteration.domain
 
 (argument_list
-  "(" @argumentOrParameter.iteration.start.endOf
-  ")" @argumentOrParameter.iteration.end.startOf
-) @argumentOrParameter.iteration.domain
+  "(" @argumentOrParameter.iteration.start.endOf @name.iteration.start.endOf @value.iteration.start.endOf
+  ")" @argumentOrParameter.iteration.end.startOf @name.iteration.end.startOf @value.iteration.end.startOf
+) @argumentOrParameter.iteration.domain @name.iteration.domain @value.iteration.domain
 
 (call
   (generator_expression

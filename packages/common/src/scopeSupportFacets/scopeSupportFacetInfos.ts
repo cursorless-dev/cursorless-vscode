@@ -442,6 +442,16 @@ export const scopeSupportFacetInfos: Record<
     scopeType: "name",
     isIteration: true,
   },
+  "name.argument.actual": {
+    description: "The name of a (keyword) argument in a function call",
+    scopeType: "name",
+  },
+  "name.argument.actual.iteration": {
+    description:
+      "Iteration scope of the names of the actual parameters of a function call; should be the whole arguments list",
+    scopeType: "name",
+    isIteration: true,
+  },
   "name.argument.formal": {
     description: "The name of a parameter in a function declaration",
     scopeType: "name",
@@ -556,12 +566,22 @@ export const scopeSupportFacetInfos: Record<
     isIteration: true,
   },
   "value.argument.formal": {
-    description: "The value of a parameter in a function declaration",
+    description: "The value of a (keyword) argument in a function declaration",
     scopeType: "value",
   },
   "value.argument.formal.iteration": {
     description:
       "Iteration scope of the values of the formal parameters of a function declaration; should be the whole parameter list",
+    scopeType: "value",
+    isIteration: true,
+  },
+  "value.argument.actual": {
+    description: "The value of a argument in a function call",
+    scopeType: "value",
+  },
+  "value.argument.actual.iteration": {
+    description:
+      "Iteration scope of the values of the actual parameters of a function call; should be the whole arguments list",
     scopeType: "value",
     isIteration: true,
   },

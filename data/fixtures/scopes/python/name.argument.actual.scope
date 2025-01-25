@@ -1,0 +1,29 @@
+aaa(bbb=0, ccc=1)
+---
+
+[#1 Content] =
+[#1 Removal] = 0:4-0:7
+      >---<
+0| aaa(bbb=0, ccc=1)
+
+[#1 Domain] = 0:4-0:9
+      >-----<
+0| aaa(bbb=0, ccc=1)
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] =
+[#2 Removal] = 0:11-0:14
+             >---<
+0| aaa(bbb=0, ccc=1)
+
+[#2 Leading delimiter] = 0:10-0:11
+            >-<
+0| aaa(bbb=0, ccc=1)
+
+[#2 Domain] = 0:11-0:16
+             >-----<
+0| aaa(bbb=0, ccc=1)
+
+[#2 Insertion delimiter] = " "
