@@ -72,6 +72,7 @@ function calculateIndicesAndCreateTarget(
 
   return [
     createRangeTargetFromIndices(
+      modifier.scopeType,
       target.isReversed,
       targets,
       startIndex,
@@ -108,7 +109,7 @@ function computeProximalIndex(
         );
 
     if (adjacentTargetIndex === -1) {
-      throw new OutOfRangeError();
+      throw new OutOfRangeError(modifier.scopeType);
     }
 
     // For convenience, if they ask to include intersecting indices, we just

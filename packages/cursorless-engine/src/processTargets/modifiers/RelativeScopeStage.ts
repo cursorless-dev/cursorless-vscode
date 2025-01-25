@@ -47,7 +47,10 @@ export class RelativeScopeStage implements ModifierStage {
     );
 
     if (scopes.length < this.modifier.length) {
-      throw new OutOfRangeError();
+      throw new OutOfRangeError(
+        this.modifier.scopeType,
+        this.modifier.offset + this.modifier.length - 1,
+      );
     }
 
     const { isReversed } = target;

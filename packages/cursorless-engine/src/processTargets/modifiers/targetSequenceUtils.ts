@@ -14,12 +14,13 @@ import { assertIndices } from "./listUtils";
  * end of the range
  */
 export function createRangeTargetFromIndices(
+  scopeType: ScopeType,
   isReversed: boolean,
   targets: Target[],
   startIndex: number,
   endIndex: number,
 ): Target {
-  assertIndices(targets, startIndex, endIndex);
+  assertIndices(scopeType, targets, startIndex, endIndex);
 
   if (startIndex === endIndex) {
     return targets[startIndex];
