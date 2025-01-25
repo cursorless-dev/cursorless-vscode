@@ -1,0 +1,30 @@
+function foo(value: string)
+function foo(value: number);
+function foo(value: string | number) {}
+---
+
+[#1 Content] =
+[#1 Removal] =
+[#1 Domain] = 0:0-0:27
+  >---------------------------<
+0| function foo(value: string)
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Removal] =
+[#2 Domain] = 1:0-1:28
+  >----------------------------<
+1| function foo(value: number);
+
+[#2 Insertion delimiter] = "\n\n"
+
+
+[#3 Content] =
+[#3 Removal] =
+[#3 Domain] = 2:0-2:39
+  >---------------------------------------<
+2| function foo(value: string | number) {}
+
+[#3 Insertion delimiter] = "\n\n"

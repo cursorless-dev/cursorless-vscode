@@ -1,0 +1,53 @@
+class MyClass {
+  foo(value: string)
+  foo(value: number);
+  foo(value: string | number) {}
+}
+---
+
+[#1 Content] =
+[#1 Domain] = 1:2-1:20
+    >------------------<
+1|   foo(value: string)
+
+[#1 Removal] = 1:0-1:20
+  >--------------------<
+1|   foo(value: string)
+
+[#1 Leading delimiter] = 1:0-1:2
+  >--<
+1|   foo(value: string)
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Domain] = 2:2-2:21
+    >-------------------<
+2|   foo(value: number);
+
+[#2 Removal] = 2:0-2:21
+  >---------------------<
+2|   foo(value: number);
+
+[#2 Leading delimiter] = 2:0-2:2
+  >--<
+2|   foo(value: number);
+
+[#2 Insertion delimiter] = "\n\n"
+
+
+[#3 Content] =
+[#3 Domain] = 3:2-3:32
+    >------------------------------<
+3|   foo(value: string | number) {}
+
+[#3 Removal] = 3:0-3:32
+  >--------------------------------<
+3|   foo(value: string | number) {}
+
+[#3 Leading delimiter] = 3:0-3:2
+  >--<
+3|   foo(value: string | number) {}
+
+[#3 Insertion delimiter] = "\n\n"

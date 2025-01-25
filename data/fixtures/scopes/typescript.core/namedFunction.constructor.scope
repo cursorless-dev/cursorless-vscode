@@ -1,0 +1,53 @@
+class MyClass {
+  constructor(value: string)
+  constructor(value: number);
+  constructor(value: string | number) {}
+}
+---
+
+[#1 Content] =
+[#1 Domain] = 1:2-1:28
+    >--------------------------<
+1|   constructor(value: string)
+
+[#1 Removal] = 1:0-1:28
+  >----------------------------<
+1|   constructor(value: string)
+
+[#1 Leading delimiter] = 1:0-1:2
+  >--<
+1|   constructor(value: string)
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Domain] = 2:2-2:29
+    >---------------------------<
+2|   constructor(value: number);
+
+[#2 Removal] = 2:0-2:29
+  >-----------------------------<
+2|   constructor(value: number);
+
+[#2 Leading delimiter] = 2:0-2:2
+  >--<
+2|   constructor(value: number);
+
+[#2 Insertion delimiter] = "\n\n"
+
+
+[#3 Content] =
+[#3 Domain] = 3:2-3:40
+    >--------------------------------------<
+3|   constructor(value: string | number) {}
+
+[#3 Removal] = 3:0-3:40
+  >----------------------------------------<
+3|   constructor(value: string | number) {}
+
+[#3 Leading delimiter] = 3:0-3:2
+  >--<
+3|   constructor(value: string | number) {}
+
+[#3 Insertion delimiter] = "\n\n"
