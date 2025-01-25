@@ -1,4 +1,7 @@
-def get_tutorial_entries():
+from ..get_list import ListItemDescriptor
+
+
+def get_tutorial_entries() -> list[ListItemDescriptor]:
     return [
         {
             "id": "start_tutorial",

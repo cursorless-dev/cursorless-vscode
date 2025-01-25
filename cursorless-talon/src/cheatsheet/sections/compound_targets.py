@@ -1,4 +1,4 @@
-from ..get_list import get_raw_list, get_spoken_form_from_list
+from ..get_list import ListItemDescriptor, get_raw_list, get_spoken_form_from_list
 
 FORMATTERS = {
     "rangeExclusive": lambda start, end: f"between {start} and {end}",
@@ -9,32 +9,42 @@ FORMATTERS = {
 }
 
 
-def get_compound_targets():
+def get_compound_targets() -> list[ListItemDescriptor]:
     list_connective_term = get_spoken_form_from_list(
         "list_connective", "listConnective"
     )
     vertical_range_term = get_spoken_form_from_list("range_type", "verticalRange")
 
-    return [
-        {
-            "id": "listConnective",
-            "type": "compoundTargetConnective",
-            "variations": [
-                {
-                    "spokenForm": f"<target 1> {list_connective_term} <target 2>",
-                    "description": "<target 1> and <target 2>",
-                },
-            ],
-        },
-        *[
+    items: list[ListItemDescriptor] = []
+
+    if list_connective_term:
+        items.append(
+            {
+                "id": "listConnective",
+                "type": "compoundTargetConnective",
+                "variations": [
+                    {
+                        "spokenForm": f"<target 1> {list_connective_term} <target 2>",
+                        "description": "<target 1> and <target 2>",
+                    },
+                ],
+            }
+        )
+
+    items.extend(
+        [
             get_entry(spoken_form, id)
             for spoken_form, id in get_raw_list("range_connective").items()
-        ],
-        get_entry(vertical_range_term, "verticalRange"),
-    ]
+        ]
+    )
+
+    if vertical_range_term:
+        items.append(get_entry(vertical_range_term, "verticalRange"))
+
+    return items
 
 
-def get_entry(spoken_form, id):
+def get_entry(spoken_form, id) -> ListItemDescriptor:
     formatter = FORMATTERS[id]
 
     return {
