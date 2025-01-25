@@ -437,14 +437,13 @@
   (_) @value
 ) @_.domain
 
-;; Disabled due to Cursorless error ("invalid capture") caused by "return@"
-;; (jump_expression
-;;   "return@"
-;;   .
-;;   (label)
-;;   .
-;;   (_) @value
-;; ) @_.domain
+(jump_expression
+  "return@"
+  .
+  (label)
+  .
+  (_) @value
+) @_.domain
 
 (_
   (function_body

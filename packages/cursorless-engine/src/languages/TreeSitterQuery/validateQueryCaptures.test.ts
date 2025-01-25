@@ -52,6 +52,11 @@ const testCases: { name: string; isOk: boolean; content: string }[] = [
     content: ";; (if_statement) @unknown",
   },
   {
+    name: "@ ending string",
+    isOk: true,
+    content: '"return@"',
+  },
+  {
     name: "Unknown capture",
     isOk: false,
     content: "(if_statement) @unknown",
