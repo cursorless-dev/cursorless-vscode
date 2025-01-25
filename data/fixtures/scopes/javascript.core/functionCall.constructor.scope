@@ -7,4 +7,4 @@ new Foo.bar(0);
   >--------------<
 0| new Foo.bar(0);
 
-[Insertion delimiter] = " "
+[Insertion delimiter] = ";\n"

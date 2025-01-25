@@ -503,28 +503,27 @@
   (#child-range! @private.switchStatementSubject 0 -1 true true)
 ) @_.domain
 
-;;!! foo()
-;;!  ^^^^^
-;;!! new Foo()
-;;!  ^^^^^^^^^
-[
-  (call_expression)
-  (new_expression)
-] @functionCall
-
-;;!! foo()
+;;!! foo();
+;;!  ^^^^^^
 ;;!  ^^^
 ;;!  -----
-(call_expression
-  function: (_) @functionCallee
-) @_.domain
+(
+  (call_expression
+    function: (_) @functionCallee
+  ) @functionCall @_.domain
+  (#insertion-delimiter! @functionCall ";\n")
+)
 
-;;!! new Foo()
+;;!! new Foo();
+;;!  ^^^^^^^^^^
 ;;!  ^^^^^^^
 ;;!  ---------
-(new_expression
-  (arguments) @functionCallee.end.startOf
-) @functionCallee.start.startOf @_.domain
+(
+  (new_expression
+    (arguments) @functionCallee.end.startOf
+  ) @functionCall @functionCallee.start.startOf @_.domain
+  (#insertion-delimiter! @functionCall ";\n")
+)
 
 ;;!! class Foo {}
 ;;!  ^^^^^^^^^^^^
