@@ -1,0 +1,124 @@
+fib :: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+id :: a -> a
+id x = x
+
+---
+
+[#1 Content] =
+[#1 Domain] = 3:4-3:29
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+
+[#1 Removal] = 3:3-3:29
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+     >--------------------------<
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+
+[#1 Leading delimiter] = 3:3-3:4
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+     >-<
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Domain] = 6:3-6:8
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+     >-----<
+7|
+
+
+[#2 Removal] = 6:2-6:8
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+    >------<
+7|
+
+
+[#2 Leading delimiter] = 6:2-6:3
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+    >-<
+7|
+
+
+[#2 Insertion delimiter] = "\n\n"

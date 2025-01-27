@@ -1,0 +1,52 @@
+type Point = (Double, Double)
+
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+---
+
+[Content] =
+[Domain] = 4:4-4:29
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+5|
+
+
+[Removal] = 4:3-4:29
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+     >--------------------------<
+5|
+
+
+[Leading delimiter] = 4:3-4:4
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+     >-<
+5|
+
+
+[Insertion delimiter] = "\n\n"

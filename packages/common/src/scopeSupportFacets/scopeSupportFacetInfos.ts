@@ -308,6 +308,16 @@ export const scopeSupportFacetInfos: Record<
     scopeType: "pairDelimiter",
   },
 
+  "branch.match": {
+    description: "A pattern match branch",
+    scopeType: "branch",
+  },
+  "branch.match.iteration": {
+    description:
+      "Iteration scope for pattern match branches; should be the entire branch",
+    scopeType: "branch",
+    isIteration: true,
+  },
   "branch.if": {
     description: "An if/elif/else branch",
     scopeType: "branch",
@@ -317,7 +327,6 @@ export const scopeSupportFacetInfos: Record<
       "A for / while loop branch. For most languages there will just be one branch for the entire loop, but eg in Python you can have an else branch for a loop.",
     scopeType: "branch",
   },
-
   "branch.if.iteration": {
     description:
       "Iteration scope for if/elif/else branch; should be the entire if-else statement",

@@ -1,0 +1,215 @@
+type Point = (Double, Double)
+
+id :: a -> a
+id x = x
+
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+---
+
+[#1 Content] = 3:3-3:4
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+     >-<
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+
+8|
+
+
+[#1 Removal] = 3:3-3:5
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+     >--<
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+
+8|
+
+
+[#1 Leading delimiter] = 3:2-3:3
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+    >-<
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+
+8|
+
+
+[#1 Trailing delimiter] = 3:4-3:5
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+      >-<
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+
+8|
+
+
+[#1 Domain] = 3:3-3:8
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+     >-----<
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+
+8|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] = 7:4-7:5
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+      >-<
+8|
+
+
+[#2 Removal] = 7:4-7:6
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+      >--<
+8|
+
+
+[#2 Leading delimiter] = 7:3-7:4
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+     >-<
+8|
+
+
+[#2 Trailing delimiter] = 7:5-7:6
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+       >-<
+8|
+
+
+[#2 Domain] = 7:4-7:29
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+8|
+
+
+[#2 Insertion delimiter] = " "

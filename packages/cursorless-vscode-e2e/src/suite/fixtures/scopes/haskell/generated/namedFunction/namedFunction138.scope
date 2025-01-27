@@ -1,0 +1,73 @@
+type Point = (Double, Double)
+
+fib :: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+data Maybe a = Nothing | Just a
+
+---
+
+[Content] =
+[Domain] = 5:4-5:29
+0| type Point = (Double, Double)
+
+1|
+
+2| fib :: Integer -> Integer
+
+3| fib 0 = 0
+
+4| fib 1 = 1
+
+5| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+6|
+
+7| data Maybe a = Nothing | Just a
+
+8|
+
+
+[Removal] = 5:3-5:29
+0| type Point = (Double, Double)
+
+1|
+
+2| fib :: Integer -> Integer
+
+3| fib 0 = 0
+
+4| fib 1 = 1
+
+5| fib n = fib (n-1) + fib (n-2)
+     >--------------------------<
+6|
+
+7| data Maybe a = Nothing | Just a
+
+8|
+
+
+[Leading delimiter] = 5:3-5:4
+0| type Point = (Double, Double)
+
+1|
+
+2| fib :: Integer -> Integer
+
+3| fib 0 = 0
+
+4| fib 1 = 1
+
+5| fib n = fib (n-1) + fib (n-2)
+     >-<
+6|
+
+7| data Maybe a = Nothing | Just a
+
+8|
+
+
+[Insertion delimiter] = "\n\n"

@@ -1,0 +1,150 @@
+type Point = (Double, Double)
+
+id :: a -> a
+id x = x
+
+fib :: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+---
+
+[#1 Content] =
+[#1 Domain] = 3:3-3:8
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+     >-----<
+4|
+
+5| fib :: Integer -> Integer
+
+6| fib 0 = 0
+
+7| fib 1 = 1
+
+8| fib n = fib (n-1) + fib (n-2)
+
+9|
+
+
+[#1 Removal] = 3:2-3:8
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+    >------<
+4|
+
+5| fib :: Integer -> Integer
+
+6| fib 0 = 0
+
+7| fib 1 = 1
+
+8| fib n = fib (n-1) + fib (n-2)
+
+9|
+
+
+[#1 Leading delimiter] = 3:2-3:3
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+    >-<
+4|
+
+5| fib :: Integer -> Integer
+
+6| fib 0 = 0
+
+7| fib 1 = 1
+
+8| fib n = fib (n-1) + fib (n-2)
+
+9|
+
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Domain] = 8:4-8:29
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| fib :: Integer -> Integer
+
+6| fib 0 = 0
+
+7| fib 1 = 1
+
+8| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+9|
+
+
+[#2 Removal] = 8:3-8:29
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| fib :: Integer -> Integer
+
+6| fib 0 = 0
+
+7| fib 1 = 1
+
+8| fib n = fib (n-1) + fib (n-2)
+     >--------------------------<
+9|
+
+
+[#2 Leading delimiter] = 8:3-8:4
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| fib :: Integer -> Integer
+
+6| fib 0 = 0
+
+7| fib 1 = 1
+
+8| fib n = fib (n-1) + fib (n-2)
+     >-<
+9|
+
+
+[#2 Insertion delimiter] = "\n\n"

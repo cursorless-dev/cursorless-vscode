@@ -1,0 +1,74 @@
+id x = x
+
+const x y = x
+
+fib :: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+---
+
+[#1 Range] =
+[#1 Domain] = 0:3-0:8
+0| id x = x
+     >-----<
+1|
+
+2| const x y = x
+
+3|
+
+4| fib :: Integer -> Integer
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+
+8|
+
+
+
+[#2 Range] =
+[#2 Domain] = 2:0-2:13
+0| id x = x
+
+1|
+
+2| const x y = x
+  >-------------<
+3|
+
+4| fib :: Integer -> Integer
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+
+8|
+
+
+
+[#3 Range] =
+[#3 Domain] = 7:4-7:29
+0| id x = x
+
+1|
+
+2| const x y = x
+
+3|
+
+4| fib :: Integer -> Integer
+
+5| fib 0 = 0
+
+6| fib 1 = 1
+
+7| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+8|

@@ -1,0 +1,24 @@
+type Point = (Double, Double)
+
+id :: a -> a
+id x = x
+
+data Maybe a = Nothing | Just a
+
+---
+
+[Range] =
+[Domain] = 3:3-3:8
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+     >-----<
+4|
+
+5| data Maybe a = Nothing | Just a
+
+6|

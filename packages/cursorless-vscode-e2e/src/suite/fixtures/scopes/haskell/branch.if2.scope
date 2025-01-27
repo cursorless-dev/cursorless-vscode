@@ -1,0 +1,125 @@
+bap :: Int -> Int
+bap x
+    | x > 0, x == 0 =  x
+    | otherwise = -x
+
+---
+
+[#1 Content] =
+[#1 Domain] = 0:4-2:24
+0| bap :: Int -> Int
+      >-------------
+1| bap x
+   -----
+2|     | x > 0, x == 0 =  x
+   ------------------------<
+3|     | otherwise = -x
+
+4|
+
+
+[#1 Removal] = 0:3-2:24
+0| bap :: Int -> Int
+     >--------------
+1| bap x
+   -----
+2|     | x > 0, x == 0 =  x
+   ------------------------<
+3|     | otherwise = -x
+
+4|
+
+
+[#1 Leading delimiter] = 0:3-0:4
+0| bap :: Int -> Int
+     >-<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#1 Insertion delimiter] = "\n"
+
+
+[#2 Content] =
+[#2 Domain] = 2:6-2:24
+0| bap :: Int -> Int
+
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+        >------------------<
+3|     | otherwise = -x
+
+4|
+
+
+[#2 Removal] = 2:4-2:24
+0| bap :: Int -> Int
+
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+      >--------------------<
+3|     | otherwise = -x
+
+4|
+
+
+[#2 Leading delimiter] = 2:5-2:6
+0| bap :: Int -> Int
+
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+       >-<
+3|     | otherwise = -x
+
+4|
+
+
+[#2 Insertion delimiter] = "\n"
+
+
+[#3 Content] =
+[#3 Domain] = 3:6-3:20
+0| bap :: Int -> Int
+
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+        >--------------<
+4|
+
+
+[#3 Removal] = 3:5-3:20
+0| bap :: Int -> Int
+
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+       >---------------<
+4|
+
+
+[#3 Leading delimiter] = 3:5-3:6
+0| bap :: Int -> Int
+
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+       >-<
+4|
+
+
+[#3 Insertion delimiter] = "\n"

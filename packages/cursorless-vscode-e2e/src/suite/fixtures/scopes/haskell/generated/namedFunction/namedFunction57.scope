@@ -1,0 +1,71 @@
+id x = x
+
+const x y = x
+
+fst (x, y) = x
+
+---
+
+[#1 Content] =
+[#1 Domain] = 0:3-0:8
+0| id x = x
+     >-----<
+1|
+
+2| const x y = x
+
+3|
+
+4| fst (x, y) = x
+
+5|
+
+
+[#1 Removal] = 0:2-0:8
+0| id x = x
+    >------<
+1|
+
+2| const x y = x
+
+3|
+
+4| fst (x, y) = x
+
+5|
+
+
+[#1 Leading delimiter] = 0:2-0:3
+0| id x = x
+    >-<
+1|
+
+2| const x y = x
+
+3|
+
+4| fst (x, y) = x
+
+5|
+
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Removal] =
+[#2 Domain] = 2:0-2:13
+0| id x = x
+
+1|
+
+2| const x y = x
+  >-------------<
+3|
+
+4| fst (x, y) = x
+
+5|
+
+
+[#2 Insertion delimiter] = "\n\n"

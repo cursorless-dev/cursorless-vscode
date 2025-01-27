@@ -1,0 +1,269 @@
+id x = x
+
+const x y = x
+
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+---
+
+[#1 Content] = 0:3-0:4
+0| id x = x
+     >-<
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#1 Removal] = 0:3-0:5
+0| id x = x
+     >--<
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#1 Leading delimiter] = 0:2-0:3
+0| id x = x
+    >-<
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#1 Trailing delimiter] = 0:4-0:5
+0| id x = x
+      >-<
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#1 Domain] = 0:3-0:8
+0| id x = x
+     >-----<
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] = 2:0-2:5
+0| id x = x
+
+1|
+
+2| const x y = x
+  >-----<
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#2 Removal] = 2:0-2:6
+0| id x = x
+
+1|
+
+2| const x y = x
+  >------<
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#2 Trailing delimiter] = 2:5-2:6
+0| id x = x
+
+1|
+
+2| const x y = x
+       >-<
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#2 Domain] = 2:0-2:13
+0| id x = x
+
+1|
+
+2| const x y = x
+  >-------------<
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+
+7|
+
+
+[#2 Insertion delimiter] = " "
+
+
+[#3 Content] = 6:4-6:5
+0| id x = x
+
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+      >-<
+7|
+
+
+[#3 Removal] = 6:4-6:6
+0| id x = x
+
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+      >--<
+7|
+
+
+[#3 Leading delimiter] = 6:3-6:4
+0| id x = x
+
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+     >-<
+7|
+
+
+[#3 Trailing delimiter] = 6:5-6:6
+0| id x = x
+
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+       >-<
+7|
+
+
+[#3 Domain] = 6:4-6:29
+0| id x = x
+
+1|
+
+2| const x y = x
+
+3|
+
+4| fib 0 = 0
+
+5| fib 1 = 1
+
+6| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+7|
+
+
+[#3 Insertion delimiter] = " "

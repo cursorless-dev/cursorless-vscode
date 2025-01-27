@@ -1,0 +1,15 @@
+id x = x
+
+type Point = (Double, Double)
+
+---
+
+[Range] =
+[Domain] = 0:3-0:8
+0| id x = x
+     >-----<
+1|
+
+2| type Point = (Double, Double)
+
+3|

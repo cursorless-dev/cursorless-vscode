@@ -1,0 +1,173 @@
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+id :: a -> a
+id x = x
+
+---
+
+[#1 Content] = 2:4-2:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-<
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+
+[#1 Removal] = 2:4-2:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >--<
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+
+[#1 Leading delimiter] = 2:3-2:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+     >-<
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+
+[#1 Trailing delimiter] = 2:5-2:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+       >-<
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+
+[#1 Domain] = 2:4-2:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] = 5:3-5:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+     >-<
+6|
+
+
+[#2 Removal] = 5:3-5:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+     >--<
+6|
+
+
+[#2 Leading delimiter] = 5:2-5:3
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+    >-<
+6|
+
+
+[#2 Trailing delimiter] = 5:4-5:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+      >-<
+6|
+
+
+[#2 Domain] = 5:3-5:8
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+     >-----<
+6|
+
+
+[#2 Insertion delimiter] = " "

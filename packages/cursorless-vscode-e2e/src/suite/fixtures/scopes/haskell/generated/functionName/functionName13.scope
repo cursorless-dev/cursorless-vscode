@@ -1,0 +1,68 @@
+fib :: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+---
+
+[Content] = 3:4-3:5
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >-<
+4|
+
+
+[Removal] = 3:4-3:6
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >--<
+4|
+
+
+[Leading delimiter] = 3:3-3:4
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+     >-<
+4|
+
+
+[Trailing delimiter] = 3:5-3:6
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+       >-<
+4|
+
+
+[Domain] = 3:4-3:29
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+4|
+
+
+[Insertion delimiter] = " "

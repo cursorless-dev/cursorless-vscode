@@ -1,0 +1,42 @@
+fib :: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+id x = x
+
+---
+
+[#1 Range] =
+[#1 Domain] = 3:4-3:29
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+4|
+
+5| id x = x
+
+6|
+
+
+
+[#2 Range] =
+[#2 Domain] = 5:3-5:8
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id x = x
+     >-----<
+6|

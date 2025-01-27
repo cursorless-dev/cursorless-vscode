@@ -1,0 +1,88 @@
+fib :: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+map f [] = []
+map f (x:xs) = f x : map f xs
+
+not True = False
+not False = True
+
+---
+
+[#1 Range] =
+[#1 Domain] = 3:4-3:29
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+4|
+
+5| map f [] = []
+
+6| map f (x:xs) = f x : map f xs
+
+7|
+
+8| not True = False
+
+9| not False = True
+
+10|
+
+
+
+[#2 Range] =
+[#2 Domain] = 5:4-5:13
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| map f [] = []
+      >---------<
+6| map f (x:xs) = f x : map f xs
+
+7|
+
+8| not True = False
+
+9| not False = True
+
+10|
+
+
+
+[#3 Range] =
+[#3 Domain] = 6:4-6:29
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| map f [] = []
+
+6| map f (x:xs) = f x : map f xs
+      >-------------------------<
+7|
+
+8| not True = False
+
+9| not False = True
+
+10|

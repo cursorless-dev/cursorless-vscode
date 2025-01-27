@@ -1,0 +1,356 @@
+fib :: Integer -> Integer
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+id :: a -> a
+id x = x
+
+const :: a -> b -> a
+const x y = x
+
+---
+
+[#1 Content] = 3:4-3:5
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >-<
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#1 Removal] = 3:4-3:6
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >--<
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#1 Leading delimiter] = 3:3-3:4
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+     >-<
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#1 Trailing delimiter] = 3:5-3:6
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+       >-<
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#1 Domain] = 3:4-3:29
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] = 6:3-6:4
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+     >-<
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#2 Removal] = 6:3-6:5
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+     >--<
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#2 Leading delimiter] = 6:2-6:3
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+    >-<
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#2 Trailing delimiter] = 6:4-6:5
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+      >-<
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#2 Domain] = 6:3-6:8
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+     >-----<
+7|
+
+8| const :: a -> b -> a
+
+9| const x y = x
+
+10|
+
+
+[#2 Insertion delimiter] = " "
+
+
+[#3 Content] = 8:0-8:5
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+  >-----<
+9| const x y = x
+
+10|
+
+
+[#3 Removal] = 8:0-8:6
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+  >------<
+9| const x y = x
+
+10|
+
+
+[#3 Trailing delimiter] = 8:5-8:6
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+       >-<
+9| const x y = x
+
+10|
+
+
+[#3 Domain] = 8:0-9:13
+0| fib :: Integer -> Integer
+
+1| fib 0 = 0
+
+2| fib 1 = 1
+
+3| fib n = fib (n-1) + fib (n-2)
+
+4|
+
+5| id :: a -> a
+
+6| id x = x
+
+7|
+
+8| const :: a -> b -> a
+  >--------------------
+9| const x y = x
+   -------------<
+10|
+
+
+[#3 Insertion delimiter] = " "

@@ -1,0 +1,124 @@
+type Point = (Double, Double)
+
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+id x = x
+
+---
+
+[#1 Content] =
+[#1 Domain] = 4:4-4:29
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+5|
+
+6| id x = x
+
+7|
+
+
+[#1 Removal] = 4:3-4:29
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+     >--------------------------<
+5|
+
+6| id x = x
+
+7|
+
+
+[#1 Leading delimiter] = 4:3-4:4
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+     >-<
+5|
+
+6| id x = x
+
+7|
+
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Domain] = 6:3-6:8
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+
+5|
+
+6| id x = x
+     >-----<
+7|
+
+
+[#2 Removal] = 6:2-6:8
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+
+5|
+
+6| id x = x
+    >------<
+7|
+
+
+[#2 Leading delimiter] = 6:2-6:3
+0| type Point = (Double, Double)
+
+1|
+
+2| fib 0 = 0
+
+3| fib 1 = 1
+
+4| fib n = fib (n-1) + fib (n-2)
+
+5|
+
+6| id x = x
+    >-<
+7|
+
+
+[#2 Insertion delimiter] = "\n\n"

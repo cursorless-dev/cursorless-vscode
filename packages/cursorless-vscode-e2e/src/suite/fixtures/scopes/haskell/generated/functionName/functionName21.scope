@@ -1,0 +1,152 @@
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+id x = x
+
+---
+
+[#1 Content] = 2:4-2:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-<
+3|
+
+4| id x = x
+
+5|
+
+
+[#1 Removal] = 2:4-2:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >--<
+3|
+
+4| id x = x
+
+5|
+
+
+[#1 Leading delimiter] = 2:3-2:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+     >-<
+3|
+
+4| id x = x
+
+5|
+
+
+[#1 Trailing delimiter] = 2:5-2:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+       >-<
+3|
+
+4| id x = x
+
+5|
+
+
+[#1 Domain] = 2:4-2:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+3|
+
+4| id x = x
+
+5|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] = 4:3-4:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id x = x
+     >-<
+5|
+
+
+[#2 Removal] = 4:3-4:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id x = x
+     >--<
+5|
+
+
+[#2 Leading delimiter] = 4:2-4:3
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id x = x
+    >-<
+5|
+
+
+[#2 Trailing delimiter] = 4:4-4:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id x = x
+      >-<
+5|
+
+
+[#2 Domain] = 4:3-4:8
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id x = x
+     >-----<
+5|
+
+
+[#2 Insertion delimiter] = " "

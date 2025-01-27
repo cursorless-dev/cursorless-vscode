@@ -1,0 +1,80 @@
+type Point = (Double, Double)
+
+id :: a -> a
+id x = x
+
+const x y = x
+
+---
+
+[#1 Content] =
+[#1 Domain] = 3:3-3:8
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+     >-----<
+4|
+
+5| const x y = x
+
+6|
+
+
+[#1 Removal] = 3:2-3:8
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+    >------<
+4|
+
+5| const x y = x
+
+6|
+
+
+[#1 Leading delimiter] = 3:2-3:3
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+    >-<
+4|
+
+5| const x y = x
+
+6|
+
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Removal] =
+[#2 Domain] = 5:0-5:13
+0| type Point = (Double, Double)
+
+1|
+
+2| id :: a -> a
+
+3| id x = x
+
+4|
+
+5| const x y = x
+  >-------------<
+6|
+
+
+[#2 Insertion delimiter] = "\n\n"

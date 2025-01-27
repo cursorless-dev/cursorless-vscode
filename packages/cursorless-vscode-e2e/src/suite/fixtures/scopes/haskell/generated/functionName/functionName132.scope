@@ -1,0 +1,79 @@
+type Point = (Double, Double)
+
+id x = x
+
+data Maybe a = Nothing | Just a
+
+---
+
+[Content] = 2:3-2:4
+0| type Point = (Double, Double)
+
+1|
+
+2| id x = x
+     >-<
+3|
+
+4| data Maybe a = Nothing | Just a
+
+5|
+
+
+[Removal] = 2:3-2:5
+0| type Point = (Double, Double)
+
+1|
+
+2| id x = x
+     >--<
+3|
+
+4| data Maybe a = Nothing | Just a
+
+5|
+
+
+[Leading delimiter] = 2:2-2:3
+0| type Point = (Double, Double)
+
+1|
+
+2| id x = x
+    >-<
+3|
+
+4| data Maybe a = Nothing | Just a
+
+5|
+
+
+[Trailing delimiter] = 2:4-2:5
+0| type Point = (Double, Double)
+
+1|
+
+2| id x = x
+      >-<
+3|
+
+4| data Maybe a = Nothing | Just a
+
+5|
+
+
+[Domain] = 2:3-2:8
+0| type Point = (Double, Double)
+
+1|
+
+2| id x = x
+     >-----<
+3|
+
+4| data Maybe a = Nothing | Just a
+
+5|
+
+
+[Insertion delimiter] = " "

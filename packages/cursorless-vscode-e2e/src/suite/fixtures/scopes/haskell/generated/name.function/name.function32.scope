@@ -1,0 +1,176 @@
+id :: a -> a
+id x = x
+
+const x y = x
+
+fst :: (a, b) -> a
+fst (x, y) = x
+
+---
+
+[#1 Content] = 1:3-1:4
+0| id :: a -> a
+
+1| id x = x
+     >-<
+2|
+
+3| const x y = x
+
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#1 Removal] = 1:3-1:5
+0| id :: a -> a
+
+1| id x = x
+     >--<
+2|
+
+3| const x y = x
+
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#1 Leading delimiter] = 1:2-1:3
+0| id :: a -> a
+
+1| id x = x
+    >-<
+2|
+
+3| const x y = x
+
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#1 Trailing delimiter] = 1:4-1:5
+0| id :: a -> a
+
+1| id x = x
+      >-<
+2|
+
+3| const x y = x
+
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#1 Domain] = 1:3-1:8
+0| id :: a -> a
+
+1| id x = x
+     >-----<
+2|
+
+3| const x y = x
+
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] = 3:0-3:5
+0| id :: a -> a
+
+1| id x = x
+
+2|
+
+3| const x y = x
+  >-----<
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#2 Removal] = 3:0-3:6
+0| id :: a -> a
+
+1| id x = x
+
+2|
+
+3| const x y = x
+  >------<
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#2 Trailing delimiter] = 3:5-3:6
+0| id :: a -> a
+
+1| id x = x
+
+2|
+
+3| const x y = x
+       >-<
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#2 Domain] = 3:0-3:13
+0| id :: a -> a
+
+1| id x = x
+
+2|
+
+3| const x y = x
+  >-------------<
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+[#2 Insertion delimiter] = " "

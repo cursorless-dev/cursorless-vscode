@@ -1,0 +1,157 @@
+id x = x
+
+const :: a -> b -> a
+const x y = x
+
+type Point = (Double, Double)
+
+---
+
+[#1 Content] = 0:3-0:4
+0| id x = x
+     >-<
+1|
+
+2| const :: a -> b -> a
+
+3| const x y = x
+
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#1 Removal] = 0:3-0:5
+0| id x = x
+     >--<
+1|
+
+2| const :: a -> b -> a
+
+3| const x y = x
+
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#1 Leading delimiter] = 0:2-0:3
+0| id x = x
+    >-<
+1|
+
+2| const :: a -> b -> a
+
+3| const x y = x
+
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#1 Trailing delimiter] = 0:4-0:5
+0| id x = x
+      >-<
+1|
+
+2| const :: a -> b -> a
+
+3| const x y = x
+
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#1 Domain] = 0:3-0:8
+0| id x = x
+     >-----<
+1|
+
+2| const :: a -> b -> a
+
+3| const x y = x
+
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] = 2:0-2:5
+0| id x = x
+
+1|
+
+2| const :: a -> b -> a
+  >-----<
+3| const x y = x
+
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#2 Removal] = 2:0-2:6
+0| id x = x
+
+1|
+
+2| const :: a -> b -> a
+  >------<
+3| const x y = x
+
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#2 Trailing delimiter] = 2:5-2:6
+0| id x = x
+
+1|
+
+2| const :: a -> b -> a
+       >-<
+3| const x y = x
+
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#2 Domain] = 2:0-3:13
+0| id x = x
+
+1|
+
+2| const :: a -> b -> a
+  >--------------------
+3| const x y = x
+   -------------<
+4|
+
+5| type Point = (Double, Double)
+
+6|
+
+
+[#2 Insertion delimiter] = " "

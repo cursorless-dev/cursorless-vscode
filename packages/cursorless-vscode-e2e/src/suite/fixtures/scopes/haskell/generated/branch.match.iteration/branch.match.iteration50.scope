@@ -1,0 +1,47 @@
+id x = x
+
+const :: a -> b -> a
+const x y = x
+
+fst :: (a, b) -> a
+fst (x, y) = x
+
+---
+
+[#1 Range] =
+[#1 Domain] = 0:3-0:8
+0| id x = x
+     >-----<
+1|
+
+2| const :: a -> b -> a
+
+3| const x y = x
+
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|
+
+
+
+[#2 Range] =
+[#2 Domain] = 2:0-3:13
+0| id x = x
+
+1|
+
+2| const :: a -> b -> a
+  >--------------------
+3| const x y = x
+   -------------<
+4|
+
+5| fst :: (a, b) -> a
+
+6| fst (x, y) = x
+
+7|

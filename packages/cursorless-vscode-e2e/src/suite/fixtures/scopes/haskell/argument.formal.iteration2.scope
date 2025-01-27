@@ -1,0 +1,18 @@
+abs :: Int -> Int
+abs x
+    | x >= 0    =  x
+    | otherwise = -x
+
+---
+
+[Range] =
+[Domain] = 1:0-3:20
+0| abs :: Int -> Int
+
+1| abs x
+  >-----
+2|     | x >= 0    =  x
+   --------------------
+3|     | otherwise = -x
+   --------------------<
+4|

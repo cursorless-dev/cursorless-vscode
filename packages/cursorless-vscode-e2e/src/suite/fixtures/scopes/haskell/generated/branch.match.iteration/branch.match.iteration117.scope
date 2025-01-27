@@ -1,0 +1,96 @@
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+map f [] = []
+map f (x:xs) = f x : map f xs
+
+id x = x
+
+---
+
+[#1 Range] =
+[#1 Domain] = 2:4-2:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id x = x
+
+8|
+
+
+
+[#2 Range] =
+[#2 Domain] = 4:4-4:13
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+      >---------<
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id x = x
+
+8|
+
+
+
+[#3 Range] =
+[#3 Domain] = 5:4-5:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+      >-------------------------<
+6|
+
+7| id x = x
+
+8|
+
+
+
+[#4 Range] =
+[#4 Domain] = 7:3-7:8
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id x = x
+     >-----<
+8|

@@ -1,0 +1,47 @@
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+id x = x
+
+type Point = (Double, Double)
+
+---
+
+[#1 Range] =
+[#1 Domain] = 2:4-2:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+3|
+
+4| id x = x
+
+5|
+
+6| type Point = (Double, Double)
+
+7|
+
+
+
+[#2 Range] =
+[#2 Domain] = 4:3-4:8
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id x = x
+     >-----<
+5|
+
+6| type Point = (Double, Double)
+
+7|

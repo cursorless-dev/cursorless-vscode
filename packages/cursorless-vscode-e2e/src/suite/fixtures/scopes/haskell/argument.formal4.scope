@@ -1,0 +1,564 @@
+compare :: Int -> Int -> Ordering
+compare x y
+    | x <  y = LT
+    | x == y = EQ
+    | x  > y = GT
+
+---
+
+[#1 Content] =
+[#1 Domain] = 0:11-0:14
+0| compare :: Int -> Int -> Ordering
+             >---<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#1 Removal] = 0:11-0:15
+0| compare :: Int -> Int -> Ordering
+             >----<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#1 Leading delimiter] = 0:10-0:11
+0| compare :: Int -> Int -> Ordering
+            >-<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#1 Trailing delimiter] = 0:14-0:15
+0| compare :: Int -> Int -> Ordering
+                >-<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] =
+[#2 Domain] = 0:18-0:21
+0| compare :: Int -> Int -> Ordering
+                    >---<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#2 Removal] = 0:18-0:22
+0| compare :: Int -> Int -> Ordering
+                    >----<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#2 Leading delimiter] = 0:17-0:18
+0| compare :: Int -> Int -> Ordering
+                   >-<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#2 Trailing delimiter] = 0:21-0:22
+0| compare :: Int -> Int -> Ordering
+                       >-<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#2 Insertion delimiter] = " "
+
+
+[#3 Content] =
+[#3 Domain] = 0:18-0:33
+0| compare :: Int -> Int -> Ordering
+                    >---------------<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#3 Removal] = 0:17-0:33
+0| compare :: Int -> Int -> Ordering
+                   >----------------<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#3 Leading delimiter] = 0:17-0:18
+0| compare :: Int -> Int -> Ordering
+                   >-<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#3 Insertion delimiter] = " "
+
+
+[#4 Content] =
+[#4 Domain] = 0:25-0:33
+0| compare :: Int -> Int -> Ordering
+                           >--------<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#4 Removal] = 0:24-0:33
+0| compare :: Int -> Int -> Ordering
+                          >---------<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#4 Leading delimiter] = 0:24-0:25
+0| compare :: Int -> Int -> Ordering
+                          >-<
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#4 Insertion delimiter] = " "
+
+
+[#5 Content] =
+[#5 Domain] = 1:8-1:9
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+          >-<
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#5 Removal] = 1:8-1:10
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+          >--<
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#5 Leading delimiter] = 1:7-1:8
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+         >-<
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#5 Trailing delimiter] = 1:9-1:10
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+           >-<
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#5 Insertion delimiter] = " "
+
+
+[#6 Content] =
+[#6 Domain] = 1:10-1:11
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+            >-<
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#6 Removal] = 1:9-1:11
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+           >--<
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#6 Leading delimiter] = 1:9-1:10
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+           >-<
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+
+5|
+
+
+[#6 Insertion delimiter] = " "
+
+
+[#7 Content] =
+[#7 Domain] = 3:6-3:7
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+        >-<
+4|     | x  > y = GT
+
+5|
+
+
+[#7 Removal] = 3:6-3:8
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+        >--<
+4|     | x  > y = GT
+
+5|
+
+
+[#7 Leading delimiter] = 3:5-3:6
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+       >-<
+4|     | x  > y = GT
+
+5|
+
+
+[#7 Trailing delimiter] = 3:7-3:8
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+         >-<
+4|     | x  > y = GT
+
+5|
+
+
+[#7 Insertion delimiter] = " "
+
+
+[#8 Content] =
+[#8 Domain] = 3:11-3:12
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+             >-<
+4|     | x  > y = GT
+
+5|
+
+
+[#8 Removal] = 3:11-3:13
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+             >--<
+4|     | x  > y = GT
+
+5|
+
+
+[#8 Leading delimiter] = 3:10-3:11
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+            >-<
+4|     | x  > y = GT
+
+5|
+
+
+[#8 Trailing delimiter] = 3:12-3:13
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+              >-<
+4|     | x  > y = GT
+
+5|
+
+
+[#8 Insertion delimiter] = " "
+
+
+[#9 Content] =
+[#9 Domain] = 4:6-4:7
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+        >-<
+5|
+
+
+[#9 Removal] = 4:6-4:9
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+        >---<
+5|
+
+
+[#9 Leading delimiter] = 4:5-4:6
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+       >-<
+5|
+
+
+[#9 Trailing delimiter] = 4:7-4:9
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+         >--<
+5|
+
+
+[#9 Insertion delimiter] = " "
+
+
+[#10 Content] =
+[#10 Domain] = 4:11-4:12
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+             >-<
+5|
+
+
+[#10 Removal] = 4:11-4:13
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+             >--<
+5|
+
+
+[#10 Leading delimiter] = 4:10-4:11
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+            >-<
+5|
+
+
+[#10 Trailing delimiter] = 4:12-4:13
+0| compare :: Int -> Int -> Ordering
+
+1| compare x y
+
+2|     | x <  y = LT
+
+3|     | x == y = EQ
+
+4|     | x  > y = GT
+              >-<
+5|
+
+
+[#10 Insertion delimiter] = " "

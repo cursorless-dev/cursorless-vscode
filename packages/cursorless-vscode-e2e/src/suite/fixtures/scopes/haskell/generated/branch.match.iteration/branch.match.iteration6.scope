@@ -1,0 +1,18 @@
+id :: a -> a
+id x = x
+
+type Point = (Double, Double)
+
+---
+
+[Range] =
+[Domain] = 1:3-1:8
+0| id :: a -> a
+
+1| id x = x
+     >-----<
+2|
+
+3| type Point = (Double, Double)
+
+4|

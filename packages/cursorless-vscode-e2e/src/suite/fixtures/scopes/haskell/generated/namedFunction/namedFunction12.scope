@@ -1,0 +1,38 @@
+id x = x
+
+type Point = (Double, Double)
+
+---
+
+[Content] =
+[Domain] = 0:3-0:8
+0| id x = x
+     >-----<
+1|
+
+2| type Point = (Double, Double)
+
+3|
+
+
+[Removal] = 0:2-0:8
+0| id x = x
+    >------<
+1|
+
+2| type Point = (Double, Double)
+
+3|
+
+
+[Leading delimiter] = 0:2-0:3
+0| id x = x
+    >-<
+1|
+
+2| type Point = (Double, Double)
+
+3|
+
+
+[Insertion delimiter] = "\n\n"

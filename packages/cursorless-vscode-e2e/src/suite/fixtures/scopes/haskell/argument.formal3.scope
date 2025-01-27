@@ -1,0 +1,177 @@
+bap :: Int -> Int
+bap x
+    | x > 0, x == 0 =  x
+    | otherwise = -x
+
+---
+
+[#1 Content] =
+[#1 Domain] = 0:4-0:4
+0| bap :: Int -> Int
+      ><
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#1 Removal] = 0:3-0:4
+0| bap :: Int -> Int
+     >-<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#1 Leading delimiter] = 0:3-0:4
+0| bap :: Int -> Int
+     >-<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] =
+[#2 Domain] = 0:4-1:5
+0| bap :: Int -> Int
+      >-------------
+1| bap x
+   -----<
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#2 Removal] = 0:3-1:5
+0| bap :: Int -> Int
+     >--------------
+1| bap x
+   -----<
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#2 Leading delimiter] = 0:3-0:4
+0| bap :: Int -> Int
+     >-<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#2 Insertion delimiter] = " "
+
+
+[#3 Content] =
+[#3 Domain] = 0:7-0:10
+0| bap :: Int -> Int
+         >---<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#3 Removal] = 0:7-0:11
+0| bap :: Int -> Int
+         >----<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#3 Leading delimiter] = 0:6-0:7
+0| bap :: Int -> Int
+        >-<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#3 Trailing delimiter] = 0:10-0:11
+0| bap :: Int -> Int
+            >-<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#3 Insertion delimiter] = " "
+
+
+[#4 Content] =
+[#4 Domain] = 0:14-1:5
+0| bap :: Int -> Int
+                >---
+1| bap x
+   -----<
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#4 Removal] = 0:13-1:5
+0| bap :: Int -> Int
+               >----
+1| bap x
+   -----<
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#4 Leading delimiter] = 0:13-0:14
+0| bap :: Int -> Int
+               >-<
+1| bap x
+
+2|     | x > 0, x == 0 =  x
+
+3|     | otherwise = -x
+
+4|
+
+
+[#4 Insertion delimiter] = " "

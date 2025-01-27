@@ -1,0 +1,281 @@
+Adds support for the Haskell programming language.
+
+### Roadmap
+
+- [ ] `argumentOrParameter`:
+  - [x] `argument.actual`
+  - [ ] `argument.actual.iteration`
+        Blocked on one of:
+    - #2177
+    - #2195
+  - [x] `argument.formal`
+  - [x] `argument.formal.iteration`
+- [x] `anonymousFunction`
+- [ ] `branch`
+  - [x] `branch.match`
+  - [x] `branch.match.iteration`
+  - [x] `branch.if`
+  - [x] `branch.if.iteration`
+  - [ ] `branch.ternary`
+- [ ] `collectionItem`
+- [ ] `collectionKey`
+  - [ ] `key.mapPair`
+  - [ ] `key.mapPair.iteration`
+- [ ] `comment`
+  - [ ] `comment.line`
+  - [ ] `comment.block`
+- [ ] `functionCall`
+  - [x] `functionCall`
+  - [ ] `functionCall.constructor`
+- [ ] `functionCallee`
+  - [x] `functionCallee`
+  - [ ] `functionCallee.constructor`
+- [x] `functionName`
+- [ ] `ifStatement`
+- [x] `list`
+- [ ] `map`
+- [ ] `name`
+  - [ ] `name.assignment`
+  - [ ] `name.assignment.pattern`
+  - [x] `name.function`
+  - [ ] `name.class`
+  - [ ] `name.field`
+- [ ] `namedFunction`
+  - [x] `namedFunction`
+  - [ ] `namedFunction.method`
+- [ ] `statement`
+  - [ ] `statement`
+  - [ ] `statement.iteration.document`
+  - [ ] `statement.iteration.block`
+- [x] `string`
+- [ ] `type`
+  - [ ] `class`
+  - [ ] `class.instance`
+  - [ ] `className`
+  - [ ] `type.adt`
+  - [ ] `type.alias`
+  - [ ] `type.annotation`
+  - [ ] `type.constraint`
+  - [ ] `type.dataFamily`
+  - [ ] `type.dataInstance`
+  - [ ] `type.field`
+  - [ ] `type.foreignExport`
+  - [ ] `type.foreignImport`
+  - [ ] `type.function`
+  - [ ] `type.gadt`
+  - [ ] `type.newtype`
+  - [ ] `type.typeFamily`
+  - [ ] `type.typeInstance`
+- [ ] `value`
+  - [ ] `value.assignment`
+  - [ ] `value.field`
+  - [ ] `value.mapPair`
+  - [ ] `value.mapPair.iteration`
+  - [ ] `value.return`
+- [ ] `condition`
+  - [ ] `condition.if`
+  - [ ] `condition.ternary`
+  - [ ] `condition.match`
+
+---
+
+### Warning
+
+This is work in progress. In the early stages, I'll be messy.
+
+- The commits will be uninformative.
+- The branch may receive **force pushes** at any point!
+
+---
+
+### Discussion and RFCs
+
+See #2186.
+
+---
+
+### Haskell Node Types
+
+- `adt`
+- `all_names`
+- `alt`
+- `alts`
+- `annotated_type_variable`
+- `bind_pattern`
+- `calling_convention`
+- `char`
+- `class`
+- `class_body`
+- `class_head`
+- `class_name`
+- `comma`
+- `comment`
+- `con_list`
+- `con_tuple`
+- `con_unit`
+- `constraint`
+- `constructor`
+- `constructor_operator`
+- `constructors`
+- `context`
+- `cpp`
+- `data_constructor`
+- `data_constructor_infix`
+- `data_constructor_record`
+- `data_family`
+- `data_instance`
+- `decl_tyfam_sig`
+- `decl_type`
+- `decls`
+- `default_declaration`
+- `default_signature`
+- `deriving`
+- `deriving_declaration`
+- `deriving_strategy`
+- `do_module`
+- `empty_file`
+- `equation`
+- `exp_apply`
+- `exp_arithmetic_sequence`
+- `exp_case`
+- `exp_cond`
+- `exp_do`
+- `exp_field`
+- `exp_if_guard`
+- `exp_in`
+- `exp_infix`
+- `exp_lambda`
+- `exp_lambda_case`
+- `exp_let`
+- `exp_let_in`
+- `exp_list`
+- `exp_list_comprehension`
+- `exp_literal`
+- `exp_name`
+- `exp_negation`
+- `exp_parens`
+- `exp_record`
+- `exp_section_left`
+- `exp_section_right`
+- `exp_sum_empty`
+- `exp_th_quoted_name`
+- `exp_tuple`
+- `exp_type_application`
+- `exp_unboxed_sum`
+- `exp_unboxed_tuple`
+- `expent`
+- `export`
+- `export_names`
+- `exports`
+- `field`
+- `fixity`
+- `float`
+- `forall`
+- `foreign_export`
+- `foreign_import`
+- `fun`
+- `function`
+- `fundep`
+- `fundeps`
+- `gadt_constructor`
+- `gdpat`
+- `guard`
+- `guard_equation`
+- `guards`
+- `haskell`
+- `head`
+- `impent`
+- `implicit_param`
+- `implicit_parid`
+- `import`
+- `import_con_names`
+- `import_item`
+- `import_list`
+- `import_package`
+- `infix`
+- `inst_datainst`
+- `inst_tyinst`
+- `instance`
+- `instance_head`
+- `integer`
+- `label`
+- `let`
+- `modifier`
+- `module`
+- `namespace`
+- `newtype`
+- `newtype_constructor`
+- `operator`
+- `pat_apply`
+- `pat_as`
+- `pat_field`
+- `pat_fields`
+- `pat_infix`
+- `pat_irrefutable`
+- `pat_list`
+- `pat_literal`
+- `pat_name`
+- `pat_negation`
+- `pat_parens`
+- `pat_record`
+- `pat_strict`
+- `pat_tuple`
+- `pat_typed`
+- `pat_unboxed_tuple`
+- `pat_view`
+- `pat_wildcard`
+- `pattern`
+- `pattern_guard`
+- `pattern_synonym`
+- `patterns`
+- `pragma`
+- `promoted`
+- `qual`
+- `qualified_constructor`
+- `qualified_constructor_operator`
+- `qualified_module`
+- `qualified_operator`
+- `qualified_type`
+- `qualified_type_operator`
+- `qualified_variable`
+- `quantifiers`
+- `quasiquote`
+- `quasiquote_bar`
+- `quasiquote_body`
+- `quasiquote_start`
+- `quoter`
+- `rec`
+- `record_fields`
+- `role_annotation`
+- `safety`
+- `signature`
+- `splice`
+- `stmt`
+- `strict_type`
+- `string`
+- `ticked`
+- `top_splice`
+- `transform`
+- `tycon_arrow`
+- `type`
+- `type_alias`
+- `type_apply`
+- `type_family`
+- `type_infix`
+- `type_instance`
+- `type_list`
+- `type_literal`
+- `type_name`
+- `type_operator`
+- `type_parens`
+- `type_role`
+- `type_star`
+- `type_tuple`
+- `type_unboxed_sum`
+- `type_unboxed_tuple`
+- `type_variable`
+- `variable`
+- `varop`
+- `via`
+- `where`
+- `wildcard`

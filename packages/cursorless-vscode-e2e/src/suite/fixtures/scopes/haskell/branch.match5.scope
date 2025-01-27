@@ -1,0 +1,102 @@
+fromEither :: (a -> c) -> (b -> c) -> Either a b -> c
+fromEither f g x = case x of
+    Left  l -> f l
+    Right r -> g r
+
+---
+
+[#1 Content] =
+[#1 Removal] =
+[#1 Domain] = 1:0-3:18
+0| fromEither :: (a -> c) -> (b -> c) -> Either a b -> c
+
+1| fromEither f g x = case x of
+  >----------------------------
+2|     Left  l -> f l
+   ------------------
+3|     Right r -> g r
+   ------------------<
+4|
+
+
+[#1 Insertion delimiter] = "\n"
+
+
+[#2 Content] =
+[#2 Domain] = 2:4-2:18
+0| fromEither :: (a -> c) -> (b -> c) -> Either a b -> c
+
+1| fromEither f g x = case x of
+
+2|     Left  l -> f l
+      >--------------<
+3|     Right r -> g r
+
+4|
+
+
+[#2 Removal] = 2:0-2:18
+0| fromEither :: (a -> c) -> (b -> c) -> Either a b -> c
+
+1| fromEither f g x = case x of
+
+2|     Left  l -> f l
+  >------------------<
+3|     Right r -> g r
+
+4|
+
+
+[#2 Leading delimiter] = 2:0-2:4
+0| fromEither :: (a -> c) -> (b -> c) -> Either a b -> c
+
+1| fromEither f g x = case x of
+
+2|     Left  l -> f l
+  >----<
+3|     Right r -> g r
+
+4|
+
+
+[#2 Insertion delimiter] = "\n"
+
+
+[#3 Content] =
+[#3 Domain] = 3:4-3:18
+0| fromEither :: (a -> c) -> (b -> c) -> Either a b -> c
+
+1| fromEither f g x = case x of
+
+2|     Left  l -> f l
+
+3|     Right r -> g r
+      >--------------<
+4|
+
+
+[#3 Removal] = 3:0-3:18
+0| fromEither :: (a -> c) -> (b -> c) -> Either a b -> c
+
+1| fromEither f g x = case x of
+
+2|     Left  l -> f l
+
+3|     Right r -> g r
+  >------------------<
+4|
+
+
+[#3 Leading delimiter] = 3:0-3:4
+0| fromEither :: (a -> c) -> (b -> c) -> Either a b -> c
+
+1| fromEither f g x = case x of
+
+2|     Left  l -> f l
+
+3|     Right r -> g r
+  >----<
+4|
+
+
+[#3 Insertion delimiter] = "\n"

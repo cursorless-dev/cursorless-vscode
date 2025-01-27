@@ -1,0 +1,462 @@
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+map f [] = []
+map f (x:xs) = f x : map f xs
+
+id :: a -> a
+id x = x
+
+---
+
+[#1 Content] = 2:4-2:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-<
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#1 Removal] = 2:4-2:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >--<
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#1 Leading delimiter] = 2:3-2:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+     >-<
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#1 Trailing delimiter] = 2:5-2:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+       >-<
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#1 Domain] = 2:4-2:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#1 Insertion delimiter] = " "
+
+
+[#2 Content] = 4:4-4:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+      >-<
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#2 Removal] = 4:4-4:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+      >--<
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#2 Leading delimiter] = 4:3-4:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+     >-<
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#2 Trailing delimiter] = 4:5-4:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+       >-<
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#2 Domain] = 4:4-4:13
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+      >---------<
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#2 Insertion delimiter] = " "
+
+
+[#3 Content] = 5:4-5:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+      >-<
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#3 Removal] = 5:4-5:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+      >--<
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#3 Leading delimiter] = 5:3-5:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+     >-<
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#3 Trailing delimiter] = 5:5-5:6
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+       >-<
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#3 Domain] = 5:4-5:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+      >-------------------------<
+6|
+
+7| id :: a -> a
+
+8| id x = x
+
+9|
+
+
+[#3 Insertion delimiter] = " "
+
+
+[#4 Content] = 8:3-8:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+     >-<
+9|
+
+
+[#4 Removal] = 8:3-8:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+     >--<
+9|
+
+
+[#4 Leading delimiter] = 8:2-8:3
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+    >-<
+9|
+
+
+[#4 Trailing delimiter] = 8:4-8:5
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+      >-<
+9|
+
+
+[#4 Domain] = 8:3-8:8
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| map f [] = []
+
+5| map f (x:xs) = f x : map f xs
+
+6|
+
+7| id :: a -> a
+
+8| id x = x
+     >-----<
+9|
+
+
+[#4 Insertion delimiter] = " "

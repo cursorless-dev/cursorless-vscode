@@ -1,0 +1,31 @@
+id :: a -> a
+id x = x
+
+---
+
+[Content] =
+[Domain] = 1:3-1:8
+0| id :: a -> a
+
+1| id x = x
+     >-----<
+2|
+
+
+[Removal] = 1:2-1:8
+0| id :: a -> a
+
+1| id x = x
+    >------<
+2|
+
+
+[Leading delimiter] = 1:2-1:3
+0| id :: a -> a
+
+1| id x = x
+    >-<
+2|
+
+
+[Insertion delimiter] = "\n\n"

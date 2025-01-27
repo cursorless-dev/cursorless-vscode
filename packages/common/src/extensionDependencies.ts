@@ -7,6 +7,7 @@ export const extensionDependencies = [
   "mrob95.vscode-talonscript", // talon
   "jrieken.vscode-tree-sitter-query", // scm
   "mathiasfrohlich.kotlin", // kotlin
+  "justusadam.language-haskell", // haskell
 
   // Necessary for the `drink cell` and `pour cell` tests
   "ms-toolsai.jupyter",

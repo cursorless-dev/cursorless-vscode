@@ -13,7 +13,8 @@
   "scripts": {
     "compile": "tsc --build",
     "watch": "tsc --build --watch",
-    "clean": "rm -rf ./out tsconfig.tsbuildinfo ./dist ./build"
+    "clean": "rm -rf ./out tsconfig.tsbuildinfo ./dist ./build",
+    "generate-scope-tests-for-haskell": "my-ts-node src/scripts/generateScopeTestsForHaskell.mts"
   },
   "keywords": [],
   "author": "",

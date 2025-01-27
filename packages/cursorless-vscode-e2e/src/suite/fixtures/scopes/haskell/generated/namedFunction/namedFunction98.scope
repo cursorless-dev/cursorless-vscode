@@ -1,0 +1,177 @@
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+
+id :: a -> a
+id x = x
+
+const :: a -> b -> a
+const x y = x
+
+---
+
+[#1 Content] =
+[#1 Domain] = 2:4-2:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+      >-------------------------<
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+7| const :: a -> b -> a
+
+8| const x y = x
+
+9|
+
+
+[#1 Removal] = 2:3-2:29
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+     >--------------------------<
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+7| const :: a -> b -> a
+
+8| const x y = x
+
+9|
+
+
+[#1 Leading delimiter] = 2:3-2:4
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+     >-<
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+7| const :: a -> b -> a
+
+8| const x y = x
+
+9|
+
+
+[#1 Insertion delimiter] = "\n\n"
+
+
+[#2 Content] =
+[#2 Domain] = 5:3-5:8
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+     >-----<
+6|
+
+7| const :: a -> b -> a
+
+8| const x y = x
+
+9|
+
+
+[#2 Removal] = 5:2-5:8
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+    >------<
+6|
+
+7| const :: a -> b -> a
+
+8| const x y = x
+
+9|
+
+
+[#2 Leading delimiter] = 5:2-5:3
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+    >-<
+6|
+
+7| const :: a -> b -> a
+
+8| const x y = x
+
+9|
+
+
+[#2 Insertion delimiter] = "\n\n"
+
+
+[#3 Content] =
+[#3 Removal] =
+[#3 Domain] = 7:0-8:13
+0| fib 0 = 0
+
+1| fib 1 = 1
+
+2| fib n = fib (n-1) + fib (n-2)
+
+3|
+
+4| id :: a -> a
+
+5| id x = x
+
+6|
+
+7| const :: a -> b -> a
+  >--------------------
+8| const x y = x
+   -------------<
+9|
+
+
+[#3 Insertion delimiter] = "\n\n"
