@@ -1,0 +1,39 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change condition
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: {type: condition}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+
+    if [["$number" -eq 42 ]]; then
+        echo "number match"
+    elif [[ $number -lt 20 ]]; then
+        echo "< 20"
+    else
+        echo "No match"
+    fi
+  selections:
+    - anchor: {line: 4, character: 6}
+      active: {line: 4, character: 6}
+  marks: {}
+finalState:
+  documentContents: |
+
+    if [["$number" -eq 42 ]]; then
+        echo "number match"
+    elif ; then
+        echo "< 20"
+    else
+        echo "No match"
+    fi
+  selections:
+    - anchor: {line: 3, character: 5}
+      active: {line: 3, character: 5}

@@ -1,0 +1,10 @@
+declare -a arr=("apple" "banana" "cherry")
+---
+
+[Content] =
+[Removal] =
+[Domain] = 0:15-0:42
+0| declare -a arr=("apple" "banana" "cherry")
+                 >---------------------------<
+
+[Insertion delimiter] = " "

@@ -1,0 +1,32 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change every arg inside fine
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      mark: {type: decoratedSymbol, symbolColor: default, character: f}
+      modifiers:
+        - type: everyScope
+          scopeType: {type: argumentOrParameter}
+        - {type: interiorOnly}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    echo "Foo ${BAR} as ${BAZ}"
+  selections:
+    - anchor: {line: 0, character: 19}
+      active: {line: 0, character: 19}
+  marks:
+    default.f:
+      start: {line: 0, character: 6}
+      end: {line: 0, character: 9}
+finalState:
+  documentContents: |
+    echo "Foo  as "
+  selections:
+    - anchor: {line: 0, character: 10}
+      active: {line: 0, character: 10}
+    - anchor: {line: 0, character: 14}
+      active: {line: 0, character: 14}

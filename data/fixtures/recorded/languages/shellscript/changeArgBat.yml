@@ -1,0 +1,29 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change arg bat
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      mark: {type: decoratedSymbol, symbolColor: default, character: b}
+      modifiers:
+        - type: containingScope
+          scopeType: {type: argumentOrParameter}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    echo "Foo ${BAR} ${BAZ} bar"
+  selections:
+    - anchor: {line: 0, character: 28}
+      active: {line: 0, character: 28}
+  marks:
+    default.b:
+      start: {line: 0, character: 12}
+      end: {line: 0, character: 15}
+finalState:
+  documentContents: |
+    echo "Foo  ${BAZ} bar"
+  selections:
+    - anchor: {line: 0, character: 10}
+      active: {line: 0, character: 10}

@@ -1,0 +1,20 @@
+declare local_var="hello"
+---
+
+[Content] = 0:8-0:17
+0| declare local_var="hello"
+          >---------<
+
+[Removal] = 0:0-0:18
+0| declare local_var="hello"
+  >------------------<
+
+[Leading delimiter] = 0:7-0:8
+0| declare local_var="hello"
+         >-<
+
+[Domain] = 0:0-0:25
+0| declare local_var="hello"
+  >-------------------------<
+
+[Insertion delimiter] = " "

@@ -1,0 +1,23 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: chuck arg
+  action:
+    name: remove
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: {type: argumentOrParameter}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: echo "foo" "bar"
+  selections:
+    - anchor: {line: 0, character: 8}
+      active: {line: 0, character: 8}
+  marks: {}
+finalState:
+  documentContents: echo "bar"
+  selections:
+    - anchor: {line: 0, character: 5}
+      active: {line: 0, character: 5}

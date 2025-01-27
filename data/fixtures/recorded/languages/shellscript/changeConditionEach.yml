@@ -1,0 +1,37 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change condition each
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      mark: {type: decoratedSymbol, symbolColor: default, character: e}
+      modifiers:
+        - type: containingScope
+          scopeType: {type: condition}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    until [ $counter -gt 5 ]
+    do
+      echo "Iteration: $counter"
+      ((counter++))
+    done
+  selections:
+    - anchor: {line: 4, character: 4}
+      active: {line: 4, character: 4}
+  marks:
+    default.e:
+      start: {line: 0, character: 9}
+      end: {line: 0, character: 16}
+finalState:
+  documentContents: |-
+    until 
+    do
+      echo "Iteration: $counter"
+      ((counter++))
+    done
+  selections:
+    - anchor: {line: 0, character: 6}
+      active: {line: 0, character: 6}

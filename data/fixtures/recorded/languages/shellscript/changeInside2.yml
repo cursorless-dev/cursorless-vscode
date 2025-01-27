@@ -1,0 +1,22 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change inside
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - {type: interiorOnly}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: "# fo(o)"
+  selections:
+    - anchor: {line: 0, character: 5}
+      active: {line: 0, character: 5}
+  marks: {}
+finalState:
+  documentContents: "# fo()"
+  selections:
+    - anchor: {line: 0, character: 5}
+      active: {line: 0, character: 5}

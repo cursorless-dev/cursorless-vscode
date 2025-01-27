@@ -1,0 +1,31 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change branch
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: {type: branch}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |+
+    if [ $value -le 0 ]; then
+    else
+    fi
+
+  selections:
+    - anchor: {line: 0, character: 2}
+      active: {line: 0, character: 2}
+  marks: {}
+finalState:
+  documentContents: |+
+
+    else
+    fi
+
+  selections:
+    - anchor: {line: 0, character: 0}
+      active: {line: 0, character: 0}

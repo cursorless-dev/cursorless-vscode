@@ -1,0 +1,20 @@
+local name="Hello world"
+---
+
+[Content] = 0:11-0:24
+0| local name="Hello world"
+             >-------------<
+
+[Removal] = 0:10-0:24
+0| local name="Hello world"
+            >--------------<
+
+[Leading delimiter] = 0:10-0:11
+0| local name="Hello world"
+            >-<
+
+[Domain] = 0:0-0:24
+0| local name="Hello world"
+  >------------------------<
+
+[Insertion delimiter] = " "

@@ -1,0 +1,33 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change key crunch
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      mark: {type: decoratedSymbol, symbolColor: default, character: k}
+      modifiers:
+        - type: containingScope
+          scopeType: {type: collectionKey}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    declare -A arr
+    arr["key1"]=val1
+    arr+=([key2]=val2 ["key3"]=val3)
+  selections:
+    - anchor: {line: 2, character: 17}
+      active: {line: 2, character: 17}
+  marks:
+    default.k:
+      start: {line: 2, character: 7}
+      end: {line: 2, character: 11}
+finalState:
+  documentContents: |-
+    declare -A arr
+    arr["key1"]=val1
+    arr+=([]=val2 ["key3"]=val3)
+  selections:
+    - anchor: {line: 2, character: 7}
+      active: {line: 2, character: 7}

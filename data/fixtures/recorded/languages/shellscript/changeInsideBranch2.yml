@@ -1,0 +1,38 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change inside branch
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - {type: interiorOnly}
+        - type: containingScope
+          scopeType: {type: branch}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    if [ "$number" -eq 42 ]; then
+        echo "The number is 42"
+    elif [ "$number" -gt 42 ]; then
+        echo "The number is greater than 42"
+    else
+        echo "The number is less than than 42"
+    fi
+  selections:
+    - anchor: {line: 3, character: 16}
+      active: {line: 3, character: 16}
+  marks: {}
+finalState:
+  documentContents: |-
+    if [ "$number" -eq 42 ]; then
+        echo "The number is 42"
+    elif [ "$number" -gt 42 ]; then
+        
+    else
+        echo "The number is less than than 42"
+    fi
+  selections:
+    - anchor: {line: 3, character: 4}
+      active: {line: 3, character: 4}

@@ -1,0 +1,29 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change name
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: {type: name}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    for ((i = 1; i <= 5; i++)); do
+      echo "C-style loop iteration: $i"
+    done
+  selections:
+    - anchor: {line: 0, character: 8}
+      active: {line: 0, character: 8}
+  marks: {}
+finalState:
+  documentContents: |-
+    for (( = 1; i <= 5; i++)); do
+      echo "C-style loop iteration: $i"
+    done
+  selections:
+    - anchor: {line: 0, character: 6}
+      active: {line: 0, character: 6}

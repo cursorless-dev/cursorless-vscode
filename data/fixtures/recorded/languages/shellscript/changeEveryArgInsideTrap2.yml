@@ -1,0 +1,32 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change every arg inside trap
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      mark: {type: decoratedSymbol, symbolColor: default, character: t}
+      modifiers:
+        - type: everyScope
+          scopeType: {type: argumentOrParameter}
+        - {type: interiorOnly}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    echo "Test $foo $bar"
+  selections:
+    - anchor: {line: 0, character: 14}
+      active: {line: 0, character: 14}
+  marks:
+    default.t:
+      start: {line: 0, character: 6}
+      end: {line: 0, character: 10}
+finalState:
+  documentContents: |
+    echo "Test  "
+  selections:
+    - anchor: {line: 0, character: 11}
+      active: {line: 0, character: 11}
+    - anchor: {line: 0, character: 12}
+      active: {line: 0, character: 12}

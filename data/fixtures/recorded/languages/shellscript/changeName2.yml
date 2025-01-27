@@ -1,0 +1,27 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change name
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: {type: name}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |+
+    local local_var="Local Variable"
+
+  selections:
+    - anchor: {line: 0, character: 18}
+      active: {line: 0, character: 18}
+  marks: {}
+finalState:
+  documentContents: |+
+    local ="Local Variable"
+
+  selections:
+    - anchor: {line: 0, character: 6}
+      active: {line: 0, character: 6}

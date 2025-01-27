@@ -1,0 +1,23 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change command
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: {type: command}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: ls non_existent_file || echo "File not found"
+  selections:
+    - anchor: {line: 0, character: 26}
+      active: {line: 0, character: 26}
+  marks: {}
+finalState:
+  documentContents: "ls non_existent_file || "
+  selections:
+    - anchor: {line: 0, character: 24}
+      active: {line: 0, character: 24}

@@ -1,0 +1,35 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: chuck value one
+  action:
+    name: remove
+    target:
+      type: primitive
+      mark: {type: decoratedSymbol, symbolColor: default, character: '1'}
+      modifiers:
+        - type: containingScope
+          scopeType: {type: value}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |2
+      # C-style for loop
+      for ((i = 1; i <= 5; i++)); do
+        echo "C-style loop iteration: $i"
+      done
+  selections:
+    - anchor: {line: 1, character: 12}
+      active: {line: 1, character: 12}
+  marks:
+    default.1:
+      start: {line: 1, character: 12}
+      end: {line: 1, character: 13}
+finalState:
+  documentContents: |2
+      # C-style for loop
+      for ((i; i <= 5; i++)); do
+        echo "C-style loop iteration: $i"
+      done
+  selections:
+    - anchor: {line: 1, character: 9}
+      active: {line: 1, character: 9}

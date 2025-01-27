@@ -1,0 +1,33 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change value vest
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      mark: {type: decoratedSymbol, symbolColor: default, character: v}
+      modifiers:
+        - type: containingScope
+          scopeType: {type: value}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    declare -A arr
+    arr["key1"]=val1
+    arr+=([key2]=val2 ["key3"]=val3)
+  selections:
+    - anchor: {line: 2, character: 17}
+      active: {line: 2, character: 17}
+  marks:
+    default.v:
+      start: {line: 2, character: 13}
+      end: {line: 2, character: 17}
+finalState:
+  documentContents: |-
+    declare -A arr
+    arr["key1"]=val1
+    arr+=([key2]= ["key3"]=val3)
+  selections:
+    - anchor: {line: 2, character: 13}
+      active: {line: 2, character: 13}

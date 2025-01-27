@@ -1,0 +1,29 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: chuck arg zip
+  action:
+    name: remove
+    target:
+      type: primitive
+      mark: {type: decoratedSymbol, symbolColor: default, character: z}
+      modifiers:
+        - type: containingScope
+          scopeType: {type: argumentOrParameter}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    echo "Foo ${BAR} ${BAZ} bar"
+  selections:
+    - anchor: {line: 0, character: 28}
+      active: {line: 0, character: 28}
+  marks:
+    default.z:
+      start: {line: 0, character: 19}
+      end: {line: 0, character: 22}
+finalState:
+  documentContents: |
+    echo "Foo ${BAR} bar"
+  selections:
+    - anchor: {line: 0, character: 21}
+      active: {line: 0, character: 21}

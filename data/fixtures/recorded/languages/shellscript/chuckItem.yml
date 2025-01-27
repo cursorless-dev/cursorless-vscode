@@ -1,0 +1,25 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: chuck item
+  action:
+    name: remove
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: {type: collectionItem}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    array=("a" "b" "c")
+  selections:
+    - anchor: {line: 0, character: 13}
+      active: {line: 0, character: 13}
+  marks: {}
+finalState:
+  documentContents: |
+    array=("a" "c")
+  selections:
+    - anchor: {line: 0, character: 11}
+      active: {line: 0, character: 11}

@@ -1,0 +1,48 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change inside branch
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - {type: interiorOnly}
+        - type: containingScope
+          scopeType: {type: branch}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    # Case statement
+    case "$number" in
+    1)
+      echo "Number is 1"
+      ;;
+    2)
+      echo "Number is 2"
+      ;;
+    *)
+      echo "Number is not recognized"
+      ;;
+    esac
+  selections:
+    - anchor: {line: 6, character: 2}
+      active: {line: 6, character: 20}
+  marks: {}
+finalState:
+  documentContents: |
+    # Case statement
+    case "$number" in
+    1)
+      echo "Number is 1"
+      ;;
+    2)
+      
+      ;;
+    *)
+      echo "Number is not recognized"
+      ;;
+    esac
+  selections:
+    - anchor: {line: 6, character: 2}
+      active: {line: 6, character: 2}

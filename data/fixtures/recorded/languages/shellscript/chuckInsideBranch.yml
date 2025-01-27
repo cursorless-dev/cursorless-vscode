@@ -1,0 +1,47 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: chuck inside branch
+  action:
+    name: remove
+    target:
+      type: primitive
+      modifiers:
+        - {type: interiorOnly}
+        - type: containingScope
+          scopeType: {type: branch}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    # Case statement
+    case "$number" in
+    1)
+      echo "Number is 1"
+      ;;
+    2)
+      echo "Number is 2"
+      ;;
+    *)
+      echo "Number is not recognized"
+      ;;
+    esac
+  selections:
+    - anchor: {line: 3, character: 9}
+      active: {line: 3, character: 9}
+  marks: {}
+finalState:
+  documentContents: |
+    # Case statement
+    case "$number" in
+    1)
+      ;;
+    2)
+      echo "Number is 2"
+      ;;
+    *)
+      echo "Number is not recognized"
+      ;;
+    esac
+  selections:
+    - anchor: {line: 2, character: 2}
+      active: {line: 2, character: 2}

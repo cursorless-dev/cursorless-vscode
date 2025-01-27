@@ -1,0 +1,20 @@
+local local_var="hello"
+---
+
+[Content] = 0:6-0:15
+0| local local_var="hello"
+        >---------<
+
+[Removal] = 0:0-0:16
+0| local local_var="hello"
+  >----------------<
+
+[Leading delimiter] = 0:5-0:6
+0| local local_var="hello"
+       >-<
+
+[Domain] = 0:0-0:23
+0| local local_var="hello"
+  >-----------------------<
+
+[Insertion delimiter] = " "

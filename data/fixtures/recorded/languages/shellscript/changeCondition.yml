@@ -1,0 +1,33 @@
+languageId: shellscript
+command:
+  version: 6
+  spokenForm: change condition
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: {type: condition}
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    if [ "$number" -eq 42 ]; then
+        echo "The number is 42"
+    else
+        echo "The number is not 42"
+    fi
+  selections:
+    - anchor: {line: 0, character: 8}
+      active: {line: 0, character: 8}
+  marks: {}
+finalState:
+  documentContents: |-
+    if ; then
+        echo "The number is 42"
+    else
+        echo "The number is not 42"
+    fi
+  selections:
+    - anchor: {line: 0, character: 3}
+      active: {line: 0, character: 3}
