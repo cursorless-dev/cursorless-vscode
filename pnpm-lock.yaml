@@ -115,7 +115,7 @@ importers:
         version: 29.7.0
       ts-jest:
         specifier: 29.2.5
-        version: 29.2.5(@babel/core@7.25.8)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.8))(esbuild@0.24.0)(jest@29.7.0(@types/node@20.16.0)(ts-node@10.9.2(@types/node@20.16.0)(typescript@5.6.3)))(typescript@5.6.3)
+        version: 29.2.5(@babel/core@7.25.8)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.8))(esbuild@0.24.0)(jest@29.7.0(@types/node@20.16.0))(typescript@5.6.3)
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
@@ -374,6 +374,34 @@ importers:
       mocha:
         specifier: ^10.7.3
         version: 10.7.3
+
+  packages/cursorless-jetbrains:
+    dependencies:
+      '@cursorless/common':
+        specifier: workspace:*
+        version: link:../common
+      '@cursorless/cursorless-engine':
+        specifier: workspace:*
+        version: link:../cursorless-engine
+      '@cursorless/test-case-recorder':
+        specifier: workspace:*
+        version: link:../test-case-recorder
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      vscode-uri:
+        specifier: ^3.0.8
+        version: 3.0.8
+      web-tree-sitter:
+        specifier: 0.24.4
+        version: 0.24.4
+    devDependencies:
+      '@types/chai':
+        specifier: ^5.0.0
+        version: 5.0.0
+      '@types/lodash-es':
+        specifier: 4.17.12
+        version: 4.17.12
 
   packages/cursorless-neovim:
     dependencies:
@@ -9767,6 +9795,9 @@ packages:
 
   web-namespaces@2.0.1:
     resolution: {integrity: sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ==}
+
+  web-tree-sitter@0.24.4:
+    resolution: {integrity: sha512-sETP1Sf9OTd4LusrKBNznNgTt3fWoWhJnAFaKPiGSeVKXJbZ72qoMpxddKMdVI5BgXv32OI7tkKQre5PmF9reA==}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -20992,7 +21023,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-jest@29.2.5(@babel/core@7.25.8)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.8))(esbuild@0.24.0)(jest@29.7.0(@types/node@20.16.0)(ts-node@10.9.2(@types/node@20.16.0)(typescript@5.6.3)))(typescript@5.6.3):
+  ts-jest@29.2.5(@babel/core@7.25.8)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.8))(esbuild@0.24.0)(jest@29.7.0(@types/node@20.16.0))(typescript@5.6.3):
     dependencies:
       bs-logger: 0.2.6
       ejs: 3.1.10
@@ -21375,6 +21406,8 @@ snapshots:
       defaults: 1.0.4
 
   web-namespaces@2.0.1: {}
+
+  web-tree-sitter@0.24.4: {}
 
   webidl-conversions@3.0.1: {}
 

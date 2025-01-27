@@ -1,0 +1,43 @@
+{
+  "name": "@cursorless/cursorless-jetbrains",
+  "version": "1.0.0",
+  "description": "cursorless in jetbrains",
+  "main": "./out/cursorless.js",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm run esbuild:prod && pnpm run populate-dist",
+    "compile": "tsc --build",
+    "esbuild:base": "esbuild ./src/index.ts --format=esm --target=es2020 --conditions=cursorless:bundler --bundle --main-fields=main,module --outfile=./out/cursorless.js --platform=neutral --external:std --external:fs --external:path",
+    "esbuild": "pnpm run esbuild:base --sourcemap",
+    "esbuild:prod": "pnpm run esbuild:base --minify",
+    "populate-dist": "bash ./scripts/populate-dist.sh",
+    "populate-dist:prod": "bash ./scripts/populate-dist.sh",
+    "watch:tsc": "pnpm compile --watch",
+    "watch:esbuild": "pnpm esbuild --watch",
+    "watch": "pnpm run --filter @cursorless/cursorless-jetbrains --parallel '/^watch:.*/'",
+    "clean": "rm -rf ./out tsconfig.tsbuildinfo ./dist ./build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "types": "./out/index.d.ts",
+  "exports": {
+    ".": {
+      "cursorless:bundler": "./src/index.ts",
+      "default": "./out/index.cjs"
+    }
+  },
+  "dependencies": {
+    "@cursorless/common": "workspace:*",
+    "@cursorless/cursorless-engine": "workspace:*",
+    "@cursorless/test-case-recorder": "workspace:*",
+    "lodash-es": "^4.17.21",
+    "vscode-uri": "^3.0.8",
+    "web-tree-sitter": "0.24.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^5.0.0",
+    "@types/lodash-es": "4.17.12"
+  }
+}
