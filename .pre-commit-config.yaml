@@ -89,3 +89,7 @@ repos:
     rev: v0.20.0
     hooks:
       - id: stylua
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.10.0
+    hooks:
+      - id: shellcheck
