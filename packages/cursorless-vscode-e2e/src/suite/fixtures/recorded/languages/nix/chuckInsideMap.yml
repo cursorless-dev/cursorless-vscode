@@ -1,0 +1,32 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: chuck inside map
+  action:
+    name: remove
+    target:
+      type: primitive
+      modifiers:
+        - { type: interiorOnly }
+        - type: containingScope
+          scopeType: { type: map }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      foo = if a
+      then b
+      else c;
+    }
+  selections:
+    - anchor: { line: 3, character: 9 }
+      active: { line: 3, character: 9 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+
+    }
+  selections:
+    - anchor: { line: 1, character: 2 }
+      active: { line: 1, character: 2 }

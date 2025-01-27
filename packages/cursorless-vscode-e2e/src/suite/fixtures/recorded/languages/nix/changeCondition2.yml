@@ -1,0 +1,29 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change condition
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: condition }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      key = assert a > b; "foo";
+    }
+  selections:
+    - anchor: { line: 1, character: 11 }
+      active: { line: 1, character: 11 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      key = assert ; "foo";
+    }
+  selections:
+    - anchor: { line: 1, character: 15 }
+      active: { line: 1, character: 15 }

@@ -1,0 +1,31 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change arg
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: argumentOrParameter }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+        outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, sops-nix, ... }:
+        {};
+    }
+  selections:
+    - anchor: { line: 1, character: 44 }
+      active: { line: 1, character: 44 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+        outputs = :
+        {};
+    }
+  selections:
+    - anchor: { line: 1, character: 14 }
+      active: { line: 1, character: 14 }

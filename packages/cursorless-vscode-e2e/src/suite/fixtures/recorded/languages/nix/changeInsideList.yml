@@ -1,0 +1,24 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change inside list
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - { type: interiorOnly }
+        - type: containingScope
+          scopeType: { type: list }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: '{ d = [ "1" 2 ]; }'
+  selections:
+    - anchor: { line: 0, character: 10 }
+      active: { line: 0, character: 10 }
+  marks: {}
+finalState:
+  documentContents: "{ d = [  ]; }"
+  selections:
+    - anchor: { line: 0, character: 8 }
+      active: { line: 0, character: 8 }

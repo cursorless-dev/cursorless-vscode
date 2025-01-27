@@ -1,0 +1,30 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change inside lambda
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - { type: interiorOnly }
+        - type: containingScope
+          scopeType: { type: anonymousFunction }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    {
+      x = a: b: a + b;
+    }
+  selections:
+    - anchor: { line: 1, character: 9 }
+      active: { line: 1, character: 9 }
+  marks: {}
+finalState:
+  documentContents: |-
+    {
+      x = a: b: ;
+    }
+  selections:
+    - anchor: { line: 1, character: 12 }
+      active: { line: 1, character: 12 }

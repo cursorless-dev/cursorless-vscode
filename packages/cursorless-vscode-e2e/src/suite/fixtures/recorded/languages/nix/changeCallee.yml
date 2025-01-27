@@ -1,0 +1,29 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change callee
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: functionCallee }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      x = map (x: y: x + x) [ 1 2 3 ];
+    }
+  selections:
+    - anchor: { line: 1, character: 14 }
+      active: { line: 1, character: 14 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      x =  (x: y: x + x) [ 1 2 3 ];
+    }
+  selections:
+    - anchor: { line: 1, character: 6 }
+      active: { line: 1, character: 6 }

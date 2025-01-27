@@ -1,0 +1,25 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change comment
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: comment }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    # Single-line comment
+  selections:
+    - anchor: { line: 0, character: 21 }
+      active: { line: 0, character: 21 }
+  marks: {}
+finalState:
+  documentContents: |+
+
+  selections:
+    - anchor: { line: 0, character: 0 }
+      active: { line: 0, character: 0 }

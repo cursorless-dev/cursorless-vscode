@@ -1,0 +1,62 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change every map
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: everyScope
+          scopeType: { type: map }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+        a = { a = b; c = d; };
+        a = {
+            a = b;
+            c = d;
+        };
+
+        a = {
+            a = {
+                b = 1; };
+
+            c = { d = [ "1" 2 ] };
+        };
+
+        a = rec {
+            a = b;
+            b = a + 1;
+        };
+    }
+  selections:
+    - anchor: { line: 10, character: 0 }
+      active: { line: 10, character: 0 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+        a = { a = b; c = d; };
+        a = {
+            a = b;
+            c = d;
+        };
+
+        a = {
+            a = ;
+
+            c = ;
+        };
+
+        a = rec {
+            a = b;
+            b = a + 1;
+        };
+    }
+  selections:
+    - anchor: { line: 8, character: 12 }
+      active: { line: 8, character: 12 }
+    - anchor: { line: 10, character: 12 }
+      active: { line: 10, character: 12 }

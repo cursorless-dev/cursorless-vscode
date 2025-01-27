@@ -1,0 +1,29 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: chuck arg
+  action:
+    name: remove
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: argumentOrParameter }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      d = "Interpolated ${value1} string ${value2}";
+    }
+  selections:
+    - anchor: { line: 1, character: 26 }
+      active: { line: 1, character: 26 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      d = "Interpolated string ${value2}";
+    }
+  selections:
+    - anchor: { line: 1, character: 20 }
+      active: { line: 1, character: 20 }

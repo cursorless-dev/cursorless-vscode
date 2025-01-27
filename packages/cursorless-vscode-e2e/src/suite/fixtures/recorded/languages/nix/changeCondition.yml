@@ -1,0 +1,35 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change condition
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: condition }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      key =
+        if a > b
+        then b
+        else c;
+    }
+  selections:
+    - anchor: { line: 3, character: 9 }
+      active: { line: 3, character: 9 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      key =
+        if
+        then b
+        else c;
+    }
+  selections:
+    - anchor: { line: 2, character: 7 }
+      active: { line: 2, character: 7 }

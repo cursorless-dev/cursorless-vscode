@@ -1,0 +1,37 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: chuck value
+  action:
+    name: remove
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: value }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      foo = let
+        a = b;
+        c = d;
+      in
+        {
+          output = b;
+        };
+
+    }
+  selections:
+    - anchor: { line: 1, character: 7 }
+      active: { line: 1, character: 7 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      foo;
+
+    }
+  selections:
+    - anchor: { line: 1, character: 5 }
+      active: { line: 1, character: 5 }

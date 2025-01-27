@@ -1,0 +1,31 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change call
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: functionCall }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    {
+        devShells = forEachSupportedSystem ({ pkgs }: {
+            default = pkgs.mkShell {};
+        });
+    }
+  selections:
+    - anchor: { line: 1, character: 24 }
+      active: { line: 1, character: 24 }
+  marks: {}
+finalState:
+  documentContents: |-
+    {
+        devShells = ;
+    }
+  selections:
+    - anchor: { line: 1, character: 16 }
+      active: { line: 1, character: 16 }

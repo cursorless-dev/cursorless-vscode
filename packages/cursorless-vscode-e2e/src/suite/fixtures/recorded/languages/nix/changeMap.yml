@@ -1,0 +1,37 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change map
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: map }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+        a = { a = b; c = d; };
+        a = {
+            a = b;
+            c = d;
+        };
+    }
+  selections:
+    - anchor: { line: 1, character: 12 }
+      active: { line: 1, character: 12 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+        a = ;
+        a = {
+            a = b;
+            c = d;
+        };
+    }
+  selections:
+    - anchor: { line: 1, character: 8 }
+      active: { line: 1, character: 8 }

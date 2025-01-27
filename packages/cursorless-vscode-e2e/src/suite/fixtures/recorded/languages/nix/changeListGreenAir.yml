@@ -1,0 +1,36 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change list green air
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      mark: { type: decoratedSymbol, symbolColor: green, character: a }
+      modifiers:
+        - type: containingScope
+          scopeType: { type: list }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      bar = [ A
+              B
+              C # foo
+              ];
+    }
+  selections:
+    - anchor: { line: 0, character: 1 }
+      active: { line: 0, character: 1 }
+  marks:
+    green.a:
+      start: { line: 1, character: 10 }
+      end: { line: 1, character: 11 }
+finalState:
+  documentContents: |
+    {
+      bar = ;
+    }
+  selections:
+    - anchor: { line: 1, character: 8 }
+      active: { line: 1, character: 8 }

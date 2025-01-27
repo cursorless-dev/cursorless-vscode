@@ -1,0 +1,29 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change string
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: surroundingPair, delimiter: string }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      a = "double quoted string";
+    }
+  selections:
+    - anchor: { line: 1, character: 25 }
+      active: { line: 1, character: 25 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      a = ;
+    }
+  selections:
+    - anchor: { line: 1, character: 6 }
+      active: { line: 1, character: 6 }

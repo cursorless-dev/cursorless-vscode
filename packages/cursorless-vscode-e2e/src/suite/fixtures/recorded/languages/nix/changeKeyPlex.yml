@@ -1,0 +1,33 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change key plex
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      mark: { type: decoratedSymbol, symbolColor: default, character: x }
+      modifiers:
+        - type: containingScope
+          scopeType: { type: collectionKey }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      foo = { x = 1; y = 2; };
+    }
+  selections:
+    - anchor: { line: 1, character: 12 }
+      active: { line: 1, character: 12 }
+  marks:
+    default.x:
+      start: { line: 1, character: 10 }
+      end: { line: 1, character: 11 }
+finalState:
+  documentContents: |
+    {
+      foo = {  = 1; y = 2; };
+    }
+  selections:
+    - anchor: { line: 1, character: 10 }
+      active: { line: 1, character: 10 }

@@ -1,0 +1,30 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change inside funk
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - { type: interiorOnly }
+        - type: containingScope
+          scopeType: { type: namedFunction }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      x = a: b: a + b;
+    }
+  selections:
+    - anchor: { line: 1, character: 16 }
+      active: { line: 1, character: 16 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      x = ;
+    }
+  selections:
+    - anchor: { line: 1, character: 6 }
+      active: { line: 1, character: 6 }

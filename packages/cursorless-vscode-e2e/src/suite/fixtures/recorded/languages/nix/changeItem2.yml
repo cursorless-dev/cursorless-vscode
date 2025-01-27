@@ -1,0 +1,35 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change item
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: collectionItem }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      bar = [ A
+              B
+              C # foo
+              ];
+    }
+  selections:
+    - anchor: { line: 2, character: 10 }
+      active: { line: 2, character: 10 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      bar = [ A
+
+              C # foo
+              ];
+    }
+  selections:
+    - anchor: { line: 2, character: 10 }
+      active: { line: 2, character: 10 }

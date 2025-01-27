@@ -1,0 +1,21 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change state
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: statement }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |-
+    { a ? false, b ? false , c ? null }:
+        {foo = assert b != false; a;}
+  selections:
+    - anchor: { line: 1, character: 19 }
+      active: { line: 1, character: 19 }
+  marks: {}
+thrownError: { name: NoContainingScopeError }

@@ -1,0 +1,37 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change every if state
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: everyScope
+          scopeType: { type: ifStatement }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      key = if a then b else c;
+      key =
+        if a
+        then b
+        else c;
+    }
+  selections:
+    - anchor: { line: 5, character: 11 }
+      active: { line: 5, character: 11 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      key = ;
+      key =
+        ;
+    }
+  selections:
+    - anchor: { line: 1, character: 8 }
+      active: { line: 1, character: 8 }
+    - anchor: { line: 3, character: 4 }
+      active: { line: 3, character: 4 }

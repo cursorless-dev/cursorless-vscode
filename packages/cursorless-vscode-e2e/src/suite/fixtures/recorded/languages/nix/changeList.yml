@@ -1,0 +1,29 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change list
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: list }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      foo = [ "a" a/b/c "b" ];
+    }
+  selections:
+    - anchor: { line: 1, character: 23 }
+      active: { line: 1, character: 23 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      foo = ;
+    }
+  selections:
+    - anchor: { line: 1, character: 8 }
+      active: { line: 1, character: 8 }

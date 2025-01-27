@@ -1,0 +1,43 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: change value
+  action:
+    name: clearAndSetSelection
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: value }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      foo = let
+        a = b;
+        c = d;
+      in
+        {
+          output = b;
+        };
+
+    }
+  selections:
+    - anchor: { line: 6, character: 13 }
+      active: { line: 6, character: 13 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      foo = let
+        a = b;
+        c = d;
+      in
+        {
+          output = ;
+        };
+
+    }
+  selections:
+    - anchor: { line: 6, character: 15 }
+      active: { line: 6, character: 15 }

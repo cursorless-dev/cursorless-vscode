@@ -1,0 +1,29 @@
+languageId: nix
+command:
+  version: 6
+  spokenForm: chuck key
+  action:
+    name: remove
+    target:
+      type: primitive
+      modifiers:
+        - type: containingScope
+          scopeType: { type: collectionKey }
+  usePrePhraseSnapshot: true
+initialState:
+  documentContents: |
+    {
+      d = "Interpolated ${value1} string ${value2}";
+    }
+  selections:
+    - anchor: { line: 1, character: 6 }
+      active: { line: 1, character: 6 }
+  marks: {}
+finalState:
+  documentContents: |
+    {
+      "Interpolated ${value1} string ${value2}";
+    }
+  selections:
+    - anchor: { line: 1, character: 2 }
+      active: { line: 1, character: 2 }
