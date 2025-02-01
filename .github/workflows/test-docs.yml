@@ -11,11 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CURSORLESS_REPO_ROOT: ${{ github.workspace }}
+
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
-      - run: bash -x scripts/build-and-assemble-website.sh
+
+      - name: Build website
+        run: bash -x scripts/build-and-assemble-website.sh

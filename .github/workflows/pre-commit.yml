@@ -1,5 +1,6 @@
 name: Pre-commit
 permissions: read-all
+
 on:
   push:
     branches:
@@ -16,19 +17,37 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CURSORLESS_REPO_ROOT: ${{ github.workspace }}
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
-      - run: pnpm --color install
-      - uses: leafo/gh-actions-lua@v9
-      - uses: leafo/gh-actions-luarocks@v4
-      - uses: pre-commit/action@v3.0.1
-      - uses: pre-commit-ci/lite-action@v1.0.2
+
+      - name: Install dependencies
+        run: pnpm --color install
+
+      - name: Install lua
+        uses: leafo/gh-actions-lua@v9
+
+      - name: Install luarocks
+        uses: leafo/gh-actions-luarocks@v4
+
+      - name: Run pre-commit hooks
+        uses: pre-commit/action@v3.0.1
+
+      - name: Auto-fix pre-commit issues
+        uses: pre-commit-ci/lite-action@v1.0.2
         if: always()

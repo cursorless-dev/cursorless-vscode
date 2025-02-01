@@ -1,5 +1,6 @@
 name: Run Tests
 permissions: read-all
+
 on:
   push:
     branches:
@@ -22,6 +23,7 @@ jobs:
           - os: ubuntu-latest
             app_version: legacy
     runs-on: ${{ matrix.os }}
+
     env:
       APP_VERSION: ${{ matrix.app_version }}
       # FIXME: https://github.com/cursorless-dev/cursorless/issues/2793
@@ -32,48 +34,86 @@ jobs:
       CURSORLESS_REPO_ROOT: ${{ github.workspace }}
       TEMP_DIR: ${{ github.workspace }}/temp
       NODE_OPTIONS: "--max-old-space-size=4096"
+
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
-      - run: mkdir -p "${{ env.VSCODE_CRASH_DIR }}" "${{ env.VSCODE_LOGS_DIR }}" "${{ env.TEMP_DIR }}"
+
+      - name: Creating log directories
+        run: mkdir -p "${{ env.VSCODE_CRASH_DIR }}" "${{ env.VSCODE_LOGS_DIR }}" "${{ env.TEMP_DIR }}"
         shell: bash
-      - run: pnpm --color install
-      - run: pnpm --color compile
-      - run: pnpm --color --filter '!cursorless-org' --filter '!cursorless-org-*' build
-      - run: xvfb-run -a pnpm --color test
+
+      - name: Install dependencies
+        run: pnpm --color install
+
+      - name: Compile
+        run: pnpm --color compile
+
+      - name: Build
+        run: pnpm --color --filter '!cursorless-org' --filter '!cursorless-org-*' build
+
+      - name: Run tests (Linux)
+        run: xvfb-run -a pnpm --color test
         if: runner.os == 'Linux'
-      - run: pnpm --color test
+
+      - name: Run tests (Other)
+        run: pnpm --color test
         if: runner.os != 'Linux'
-      - run: xvfb-run -a pnpm -F @cursorless/test-harness test:talonJs
+
+      - name: Run Talon-JS tests (Linux)
+        run: xvfb-run -a pnpm -F @cursorless/test-harness test:talonJs
         if: runner.os == 'Linux' && matrix.app_version == 'stable'
-      - run: pnpm -F @cursorless/test-harness test:talonJs
+
+      - name: Run Talon-JS tests (Other)
+        run: pnpm -F @cursorless/test-harness test:talonJs
         if: runner.os != 'Linux' && matrix.app_version == 'stable'
-      - run: xvfb-run -a pnpm -F @cursorless/cursorless-everywhere-talon-e2e test:quickjs
+
+      - name: Run Cursorless-everywhere-talon tests (Linux)
+        run: xvfb-run -a pnpm -F @cursorless/cursorless-everywhere-talon-e2e test:quickjs
         if: runner.os == 'Linux' && matrix.app_version == 'stable'
-      - run: pnpm -F @cursorless/cursorless-everywhere-talon-e2e test:quickjs
+
+      - name: Run Cursorless-everywhere-talon tests (Other)
+        run: pnpm -F @cursorless/cursorless-everywhere-talon-e2e test:quickjs
         if: runner.os != 'Linux' && matrix.app_version == 'stable'
-      - run: bash -x scripts/install-neovim-dependencies.sh
-      - uses: rhysd/action-setup-vim@v1
+
+      - name: Install neovim dependencies
+        run: bash -x scripts/install-neovim-dependencies.sh
+
+      - name: Setup neovim (Linux)
+        uses: rhysd/action-setup-vim@v1
         id: vim
+        if: runner.os == 'Linux' && matrix.app_version == 'stable'
         with:
           version: ${{ env.NEOVIM_VERSION }}
           neovim: true
-      - name: Run neovim tests
+
+      - name: Run neovim tests (Linux)
         run: xvfb-run -a pnpm -F @cursorless/test-harness test:neovim
-        if: runner.os == 'Linux'
+        if: runner.os == 'Linux' && matrix.app_version == 'stable'
         env:
           NEOVIM_PATH: ${{ steps.vim.outputs.executable }}
-      - uses: ./.github/actions/test-neovim-lua/
+
+      - name: Run neovim lua tests (Linux)
+        uses: ./.github/actions/test-neovim-lua/
         if: runner.os == 'Linux' && matrix.app_version == 'stable'
-      - uses: ./.github/actions/lint-lua-ls/
+
+      - name: Run neovim lua lint (Linux)
+        uses: ./.github/actions/lint-lua-ls/
         if: runner.os == 'Linux' && matrix.app_version == 'stable'
+
       - name: Create vscode dist that can be installed locally
         run: pnpm -F @cursorless/cursorless-vscode populate-dist --local-install
         if: runner.os == 'Linux' && matrix.app_version == 'stable'
+
       - name: Test create vsix
         id: createVsix
         uses: HaaLeo/publish-vscode-extension@v1
@@ -81,20 +121,25 @@ jobs:
           pat: none
           packagePath: packages/cursorless-vscode/dist
           dryRun: true
-      - run: mv ${{ steps.createVsix.outputs.vsixPath }} cursorless-development.vsix
+
+      - name: Rename vsix
+        run: mv ${{ steps.createVsix.outputs.vsixPath }} cursorless-development.vsix
         if: runner.os == 'Linux' && matrix.app_version == 'stable'
+
       - name: Upload vsix
         uses: actions/upload-artifact@v4
         if: runner.os == 'Linux' && matrix.app_version == 'stable'
         with:
           name: vsix
           path: cursorless-development.vsix
+
       - name: Archive logs
         uses: actions/upload-artifact@v4
         with:
           name: logs
           path: ${{ env.VSCODE_LOGS_DIR }}
         if: failure()
+
       - name: Archive dumps
         uses: actions/upload-artifact@v4
         with:

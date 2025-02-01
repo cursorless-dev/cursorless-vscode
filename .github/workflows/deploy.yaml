@@ -13,26 +13,40 @@ jobs:
     environment: production
     env:
       CURSORLESS_REPO_ROOT: ${{ github.workspace }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
-      - run: pnpm --color install
-      - run: pnpm --color compile
-      - run: pnpm --color --filter '!cursorless-org' --filter '!cursorless-org-*' build
+
+      - name: Install dependencies
+        run: pnpm --color install
+
+      - name: Compile
+        run: pnpm --color compile
+
+      - name: Build
+        run: pnpm --color --filter '!cursorless-org' --filter '!cursorless-org-*' build
         env:
           CURSORLESS_DEPLOY: true
+
       - name: Publish to Open VSX Registry
         id: publishToOpenVSX
         uses: HaaLeo/publish-vscode-extension@v1
         with:
           pat: ${{ secrets.OPEN_VSX_TOKEN }}
           packagePath: packages/cursorless-vscode/dist
+
       - name: Publish to Visual Studio Marketplace
         uses: HaaLeo/publish-vscode-extension@v1
         with:
@@ -47,29 +61,45 @@ jobs:
     env:
       CURSORLESS_REPO_ROOT: ${{ github.workspace }}
       STAGING_DIRECTORY: ${{ github.workspace }}/cursorless.nvim-staging
+
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
-      - run: pnpm --color install
-      - run: pnpm --color compile
-      - run: pnpm --color --filter '!cursorless-org' --filter '!cursorless-org-*' build
+
+      - name: Install dependencies
+        run: pnpm --color install
+
+      - name: Compile
+        run: pnpm --color compile
+
+      - name: Build
+        run: pnpm --color --filter '!cursorless-org' --filter '!cursorless-org-*' build
         env:
           CURSORLESS_DEPLOY: true
-      - uses: actions/checkout@v4
+
+      - name: Checkout cursorless.nvim plugin repo
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.CURSORLESS_BOT_TOKEN }}
           repository: hands-free-vim/cursorless.nvim
           path: ${{ env.STAGING_DIRECTORY }}
+
       - name: Configure GPG Key
         working-directory: ${{ env.STAGING_DIRECTORY }}
         run: |
           echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --import
         env:
           GPG_SIGNING_KEY: ${{ secrets.CURSORLESS_BOT_GPG_SIGNING_KEY }}
+
       - name: git config
         working-directory: ${{ env.STAGING_DIRECTORY }}
         run: |
@@ -77,6 +107,7 @@ jobs:
           git config user.email 98099035+cursorless-bot@users.noreply.github.com
           git config user.signingkey A9387720AFC62221
           git config commit.gpgsign true
+
       - name: Push compiled files to cursorless.nvim plugin repo
         run: bash -x scripts/deploy-cursorless-nvim.sh ${{ env.STAGING_DIRECTORY }}
 
@@ -85,20 +116,26 @@ jobs:
     runs-on: ubuntu-latest
     needs: publish-extension
     environment: production
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.CURSORLESS_BOT_TOKEN }}
+
       - name: Configure GPG Key
         run: |
           echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --import
         env:
           GPG_SIGNING_KEY: ${{ secrets.CURSORLESS_BOT_GPG_SIGNING_KEY }}
+
       - name: git config
         run: |
           git config user.name cursorless-bot
           git config user.email 98099035+cursorless-bot@users.noreply.github.com
           git config user.signingkey A9387720AFC62221
           git config commit.gpgsign true
-      - run: bash -x scripts/deploy-cursorless-talon.sh
+
+      - name: Push cursorless-talon subrepo
+        run: bash -x scripts/deploy-cursorless-talon.sh
