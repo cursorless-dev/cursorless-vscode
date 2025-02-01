@@ -4,6 +4,7 @@ command:
   spokenForm: snippet make state
   action:
     name: generateSnippet
+    directory: ""
     snippetName: snippetTest1
     target:
       type: primitive
@@ -22,34 +23,20 @@ initialState:
       active: {line: 0, character: 4}
   marks: {}
 finalState:
-  documentContents: |-
-    {
-      "snippetTest1": {
-        "definitions": [
-          {
-            "scope": {
-              "langIds": [
-                "typescript"
-              ]
-            },
-            "body": [
-              "if ($variable1) {",
-              "\tconsole.log(\"hello\")",
-              "}"
-            ]
-          }
-        ],
-        "description": "",
-        "variables": {
-          "variable1": {}
-        }
-      }
+  documentContents: |
+    name: snippetTest1
+    language: typescript
+    phrase: 
+
+    $0.wrapperPhrase: 
+    -
+    if ($0) {
+        console.log("hello")
     }
+    ---
   selections:
-    - anchor: {line: 10, character: 16}
-      active: {line: 10, character: 25}
-    - anchor: {line: 18, character: 7}
-      active: {line: 18, character: 16}
+    - anchor: {line: 2, character: 8}
+      active: {line: 2, character: 8}
   thatMark:
     - type: UntypedTarget
       contentRange:

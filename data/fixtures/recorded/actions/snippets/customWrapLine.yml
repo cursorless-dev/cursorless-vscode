@@ -11,7 +11,7 @@ command:
         - type: containingScope
           scopeType: {type: line}
   usePrePhraseSnapshot: true
-spokenFormError: Custom wrap with snippet
+spokenFormError: custom wrap with snippet
 initialState:
   documentContents: hello world
   selections:

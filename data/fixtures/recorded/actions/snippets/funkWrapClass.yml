@@ -4,13 +4,14 @@ command:
   spokenForm: funk wrap class
   action:
     name: wrapWithSnippet
-    snippetDescription: {type: named, name: functionDeclaration, variableName: body}
+    snippetDescription: {type: custom, variableName: body, body: "def $name($parameterList):\n\t$body"}
     target:
       type: primitive
       modifiers:
         - type: containingScope
           scopeType: {type: class}
   usePrePhraseSnapshot: true
+spokenFormError: custom wrap with snippet
 initialState:
   documentContents: |-
     class Aaa:

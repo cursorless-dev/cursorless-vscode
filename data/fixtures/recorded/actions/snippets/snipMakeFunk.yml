@@ -4,6 +4,7 @@ command:
   spokenForm: snippet make funk
   action:
     name: generateSnippet
+    directory: ""
     snippetName: snippetTest1
     target:
       type: primitive
@@ -28,37 +29,23 @@ initialState:
       active: {line: 5, character: 9}
   marks: {}
 finalState:
-  documentContents: |-
-    {
-      "snippetTest1": {
-        "definitions": [
-          {
-            "scope": {
-              "langIds": [
-                "typescript"
-              ]
-            },
-            "body": [
-              "function $variable1() {",
-              "\tconst whatever = \"hello\";",
-              "",
-              "\t$variable2",
-              "}"
-            ]
-          }
-        ],
-        "description": "",
-        "variables": {
-          "variable1": {},
-          "variable2": {}
-        }
-      }
+  documentContents: |
+    name: snippetTest1
+    language: typescript
+    phrase: 
+
+    $1.wrapperPhrase: 
+    $0.wrapperPhrase: 
+    -
+    function $1() {
+        const whatever = "hello";
+
+        $0
     }
+    ---
   selections:
-    - anchor: {line: 10, character: 21}
-      active: {line: 10, character: 30}
-    - anchor: {line: 20, character: 7}
-      active: {line: 20, character: 16}
+    - anchor: {line: 2, character: 8}
+      active: {line: 2, character: 8}
   thatMark:
     - type: UntypedTarget
       contentRange:

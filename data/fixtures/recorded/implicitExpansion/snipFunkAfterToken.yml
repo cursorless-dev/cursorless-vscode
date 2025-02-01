@@ -4,7 +4,12 @@ command:
   spokenForm: snippet funk after token
   action:
     name: insertSnippet
-    snippetDescription: {type: named, name: functionDeclaration}
+    snippetDescription:
+      type: custom
+      body: "function $name($parameterList) {\n\t$body\n}"
+      scopeTypes:
+        - {type: namedFunction}
+        - {type: statement}
     destination:
       type: primitive
       insertionMode: after
@@ -14,6 +19,7 @@ command:
           - type: containingScope
             scopeType: {type: token}
   usePrePhraseSnapshot: true
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: |+
     function myFunction() {

@@ -109,7 +109,6 @@ export * from "./util/regex";
 export * from "./util/selectionsEqual";
 export * from "./util/serializedMarksToTokenHats";
 export * from "./util/splitKey";
-export * from "./util/textFormatters";
 export * from "./util/toPlainObject";
 export * from "./util/type";
 export * from "./util/typeUtils";

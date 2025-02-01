@@ -1,187 +1,114 @@
-from dataclasses import dataclass
-from typing import Any, Optional, Union
+from typing import Optional, Union
 
-from talon import Module, actions
+from talon import Context, Module, actions
 
+from .snippet_types import (
+    CommunityInsertionSnippet,
+    CommunityWrapperSnippet,
+    CustomInsertionSnippet,
+    CustomWrapperSnippet,
+    InsertSnippetAction,
+    ListInsertionSnippet,
+    ListWrapperSnippet,
+    ScopeType,
+    WrapperSnippetAction,
+)
 from .targets.target_types import (
     CursorlessDestination,
     CursorlessTarget,
     ImplicitDestination,
 )
 
-
-@dataclass
-class InsertionSnippet:
-    name: str
-    destination: CursorlessDestination
-
-
-@dataclass
-class CommunityInsertionSnippet:
-    body: str
-    scopes: list[str] | None = None
-
-
-@dataclass
-class CommunityWrapperSnippet:
-    body: str
-    variable_name: str
-    scope: str | None = None
-
-
 mod = Module()
+ctx = Context()
 
 mod.list("cursorless_insert_snippet_action", desc="Cursorless insert snippet action")
 
-# Deprecated tag; we should probably remove this and notify users that they
-# should get rid of it, but I don't think it's worth the effort right now
-mod.tag(
-    "cursorless_experimental_snippets",
-    desc="tag for enabling experimental snippet support",
-)
 
-mod.tag(
-    "cursorless_use_community_snippets",
-    "If active use community snippets instead of Cursorless snippets",
-)
-
-mod.list("cursorless_wrapper_snippet", desc="Cursorless wrapper snippet")
-mod.list(
-    "cursorless_insertion_snippet_no_phrase",
-    desc="Cursorless insertion snippets that don't accept a phrase",
-)
-mod.list(
-    "cursorless_insertion_snippet_single_phrase",
-    desc="Cursorless insertion snippet that can accept a single phrase",
-)
-mod.list("cursorless_phrase_terminator", "Contains term used to terminate a phrase")
-
-
-@mod.capture(
-    rule="({user.cursorless_insertion_snippet_no_phrase} | {user.cursorless_insertion_snippet_single_phrase}) [<user.cursorless_destination>]"
-)
-def cursorless_insertion_snippet(m) -> InsertionSnippet:
-    try:
-        name = m.cursorless_insertion_snippet_no_phrase
-    except AttributeError:
-        name = m.cursorless_insertion_snippet_single_phrase.split(".")[0]
-
-    try:
-        destination = m.cursorless_destination
-    except AttributeError:
-        destination = ImplicitDestination()
-
-    return InsertionSnippet(name, destination)
-
-
-def wrap_with_snippet(snippet_description: dict, target: CursorlessTarget):
+def insert_snippet(
+    snippet: CustomInsertionSnippet | ListInsertionSnippet,
+    destination: CursorlessDestination,
+):
     actions.user.private_cursorless_command_and_wait(
-        {
-            "name": "wrapWithSnippet",
-            "snippetDescription": snippet_description,
-            "target": target,
-        },
+        InsertSnippetAction(snippet, destination),
     )
 
 
-def insert_snippet(snippet_description: dict, destination: CursorlessDestination):
+def wrap_with_snippet(
+    snippet: CustomWrapperSnippet | ListWrapperSnippet,
+    target: CursorlessTarget,
+):
     actions.user.private_cursorless_command_and_wait(
-        {
-            "name": "insertSnippet",
-            "snippetDescription": snippet_description,
-            "destination": destination,
-        },
+        WrapperSnippetAction(snippet, target),
     )
 
 
-def insert_named_snippet(
+def insert_community_snippet(
     name: str,
+    substitutions: dict[str, str] | None,
     destination: CursorlessDestination,
-    substitutions: Optional[dict] = None,
 ):
-    snippet: dict = {
-        "type": "named",
-        "name": name,
-    }
-    if substitutions is not None:
-        snippet["substitutions"] = substitutions
+    snippets: list[CommunityInsertionSnippet] = get_insertion_snippets(name)
+    snippet = ListInsertionSnippet(
+        substitutions,
+        [
+            CustomInsertionSnippet(
+                s.body,
+                to_scope_types(s.scopes),
+                # languages will be missing if the user has an older version of community
+                s.languages if hasattr(s, "languages") else None,
+                None,  # substitutions
+            )
+            for s in snippets
+        ],
+    )
     insert_snippet(snippet, destination)
 
 
-def insert_custom_snippet(
-    body: str,
-    destination: CursorlessDestination,
-    scope_types: Optional[list[dict]] = None,
-):
-    snippet: dict = {
-        "type": "custom",
-        "body": body,
-    }
+def insert_community_wrapper_snippet(name: str, target: CursorlessTarget):
+    snippets: list[CommunityWrapperSnippet] = get_wrapper_snippets(name)
+    snippet = ListWrapperSnippet(
+        [
+            CustomWrapperSnippet(
+                s.body,
+                s.variable_name,
+                ScopeType(s.scope) if s.scope else None,
+                s.languages if hasattr(s, "languages") else None,
+            )
+            for s in snippets
+        ],
+    )
+    wrap_with_snippet(snippet, target)
 
-    if scope_types:
-        snippet["scopeTypes"] = scope_types
 
-    insert_snippet(snippet, destination)
+@ctx.action_class("user")
+class UserActions:
+    def insert_snippet_by_name(
+        name: str,  # pyright: ignore [reportGeneralTypeIssues]
+        substitutions: dict[str, str] = None,
+    ):
+        insert_community_snippet(
+            name,
+            substitutions,
+            ImplicitDestination(),
+        )
 
 
 @mod.action_class
 class Actions:
-    def private_cursorless_insert_snippet(insertion_snippet: InsertionSnippet):  # pyright: ignore [reportGeneralTypeIssues]
-        """Execute Cursorless insert snippet action"""
-        insert_named_snippet(
-            insertion_snippet.name,
-            insertion_snippet.destination,
-        )
-
-    def private_cursorless_insert_snippet_with_phrase(
-        snippet_description: str,  # pyright: ignore [reportGeneralTypeIssues]
-        text: str,
-    ):
-        """Cursorless: Insert snippet <snippet_description> with phrase <text>"""
-        snippet_name, snippet_variable = snippet_description.split(".")
-        insert_named_snippet(
-            snippet_name,
-            ImplicitDestination(),
-            {snippet_variable: text},
-        )
-
-    def cursorless_insert_snippet_by_name(name: str):  # pyright: ignore [reportGeneralTypeIssues]
-        """Cursorless: Insert named snippet <name>"""
-        insert_named_snippet(
-            name,
-            ImplicitDestination(),
-        )
-
     def cursorless_insert_snippet(
         body: str,  # pyright: ignore [reportGeneralTypeIssues]
         destination: CursorlessDestination = ImplicitDestination(),
         scope_type: Optional[Union[str, list[str]]] = None,
     ):
         """Cursorless: Insert custom snippet <body>"""
-        if isinstance(scope_type, str):
-            scope_type = [scope_type]
-
-        if scope_type is not None:
-            scope_types = [{"type": st} for st in scope_type]
-        else:
-            scope_types = None
-
-        insert_custom_snippet(body, destination, scope_types)
-
-    def cursorless_wrap_with_snippet_by_name(
-        name: str,  # pyright: ignore [reportGeneralTypeIssues]
-        variable_name: str,
-        target: CursorlessTarget,
-    ):
-        """Cursorless: Wrap target with a named snippet <name>"""
-        wrap_with_snippet(
-            {
-                "type": "named",
-                "name": name,
-                "variableName": variable_name,
-            },
-            target,
+        snippet = CustomInsertionSnippet(
+            body,
+            to_scope_types(scope_type),
+            None,  # languages
+            None,  # substitutions
         )
+        insert_snippet(snippet, destination)
 
     def cursorless_wrap_with_snippet(
         body: str,  # pyright: ignore [reportGeneralTypeIssues]
@@ -190,27 +117,23 @@ class Actions:
         scope: Optional[str] = None,
     ):
         """Cursorless: Wrap target with custom snippet <body>"""
-        snippet_arg: dict[str, Any] = {
-            "type": "custom",
-            "body": body,
-        }
-        if scope is not None:
-            snippet_arg["scopeType"] = {"type": scope}
-        if variable_name is not None:
-            snippet_arg["variableName"] = variable_name
-        wrap_with_snippet(
-            snippet_arg,
-            target,
+        snippet = CustomWrapperSnippet(
+            body,
+            variable_name,
+            ScopeType(scope) if scope else None,
+            None,  # languages
         )
+        wrap_with_snippet(snippet, target)
 
     def private_cursorless_insert_community_snippet(
         name: str,  # pyright: ignore [reportGeneralTypeIssues]
         destination: CursorlessDestination,
     ):
         """Cursorless: Insert community snippet <name>"""
-        snippet: CommunityInsertionSnippet = actions.user.get_insertion_snippet(name)
-        actions.user.cursorless_insert_snippet(
-            snippet.body, destination, snippet.scopes
+        insert_community_snippet(
+            name,
+            None,  # substitutions
+            destination,
         )
 
     def private_cursorless_wrap_with_community_snippet(
@@ -218,7 +141,32 @@ class Actions:
         target: CursorlessTarget,
     ):
         """Cursorless: Wrap target with community snippet <name>"""
-        snippet: CommunityWrapperSnippet = actions.user.get_wrapper_snippet(name)
-        actions.user.cursorless_wrap_with_snippet(
-            snippet.body, target, snippet.variable_name, snippet.scope
-        )
+        insert_community_wrapper_snippet(name, target)
+
+
+def to_scope_types(scope_types: str | list[str] | None) -> list[ScopeType] | None:
+    if isinstance(scope_types, str):
+        return [ScopeType(scope_types)]
+    elif scope_types is not None:
+        return [ScopeType(st) for st in scope_types]
+        return None
+
+
+def get_insertion_snippets(name: str) -> list[CommunityInsertionSnippet]:
+    try:
+        return actions.user.get_insertion_snippets(name)
+    except Exception as ex:
+        if isinstance(ex, KeyError):
+            snippet = actions.user.get_insertion_snippet(name)
+            return [snippet]
+        raise
+
+
+def get_wrapper_snippets(name: str) -> list[CommunityWrapperSnippet]:
+    try:
+        return actions.user.get_wrapper_snippets(name)
+    except Exception as ex:
+        if isinstance(ex, KeyError):
+            snippet = actions.user.get_wrapper_snippet(name)
+            return [snippet]
+        raise

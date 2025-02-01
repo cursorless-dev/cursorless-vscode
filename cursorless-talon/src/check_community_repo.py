@@ -9,6 +9,7 @@ required_captures = [
 
 required_actions = [
     "user.homophones_get",
+    "user.insert_snippet_by_name",
     "user.reformat_text",
 ]
 

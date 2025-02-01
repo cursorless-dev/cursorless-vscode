@@ -4,7 +4,11 @@ command:
   spokenForm: snippet funk before class
   action:
     name: insertSnippet
-    snippetDescription: {type: named, name: functionDeclaration}
+    snippetDescription:
+      type: custom
+      body: "function $name($parameterList) {\n\t$body\n}"
+      scopeTypes:
+        - {type: statement}
     destination:
       type: primitive
       insertionMode: before
@@ -14,6 +18,7 @@ command:
           - type: containingScope
             scopeType: {type: class}
   usePrePhraseSnapshot: true
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: |-
     class Aaa {

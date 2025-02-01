@@ -17,7 +17,7 @@ command:
         type: primitive
         mark: {type: decoratedSymbol, symbolColor: default, character: p}
   usePrePhraseSnapshot: true
-spokenFormError: Custom insertion snippet
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: |
     def my_funk():

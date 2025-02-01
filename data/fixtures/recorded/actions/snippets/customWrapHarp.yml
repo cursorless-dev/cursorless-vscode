@@ -13,7 +13,7 @@ command:
       type: primitive
       mark: {type: decoratedSymbol, symbolColor: default, character: h}
   usePrePhraseSnapshot: true
-spokenFormError: Custom wrap with snippet
+spokenFormError: custom wrap with snippet
 initialState:
   documentContents: |
     hello world

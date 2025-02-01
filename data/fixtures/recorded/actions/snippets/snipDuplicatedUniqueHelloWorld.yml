@@ -5,12 +5,15 @@ command:
   action:
     name: insertSnippet
     snippetDescription:
-      type: named
-      name: duplicatedVariableTest
-      substitutions: {unique: hello world}
+      type: custom
+      substitutions: {unique: helloWorld}
+      Name: duplicated
+      body: >-
+        This variable: '$duplicated' is duplicated here: '$duplicated', but
+        '$unique' is unique!
     destination: {type: implicit}
   usePrePhraseSnapshot: true
-spokenFormError: Named insertion snippet 'duplicatedVariableTest'
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: ""
   selections:

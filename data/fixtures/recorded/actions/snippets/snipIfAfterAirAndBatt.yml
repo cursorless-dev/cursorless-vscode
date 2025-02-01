@@ -1,0 +1,83 @@
+languageId: typescript
+command:
+  version: 7
+  spokenForm: snip if after air and batt
+  action:
+    name: insertSnippet
+    snippetDescription:
+      type: list
+      snippets:
+        - type: custom
+          body: "if ($1) {\n\t$0\n}"
+          scopeTypes:
+            - {type: statement}
+            - {type: line}
+          languages: [c, cpp, csharp, java, javascript, typescript, javascriptreact, typescriptreact]
+        - type: custom
+          body: "if $1:\n\t$0"
+          scopeTypes:
+            - {type: statement}
+            - {type: line}
+          languages: [python]
+        - type: custom
+          body: "if $1 then\n\t$0\nend"
+          scopeTypes:
+            - {type: statement}
+            - {type: line}
+          languages: [lua]
+    destination:
+      type: primitive
+      insertionMode: after
+      target:
+        type: list
+        elements:
+          - type: primitive
+            mark: {type: decoratedSymbol, symbolColor: default, character: a}
+          - type: primitive
+            mark: {type: decoratedSymbol, symbolColor: default, character: b}
+  usePrePhraseSnapshot: false
+spokenFormError: list insertion snippet
+initialState:
+  documentContents: |
+    const aaa = 2;
+
+    // bbb
+  selections:
+    - anchor: {line: 3, character: 0}
+      active: {line: 3, character: 0}
+  marks:
+    default.a:
+      start: {line: 0, character: 6}
+      end: {line: 0, character: 9}
+    default.b:
+      start: {line: 2, character: 3}
+      end: {line: 2, character: 6}
+finalState:
+  documentContents: |
+    const aaa = 2;
+    if () {
+        
+    }
+
+    // bbb
+    if () {
+        
+    }
+  selections:
+    - anchor: {line: 1, character: 4}
+      active: {line: 1, character: 4}
+    - anchor: {line: 6, character: 4}
+      active: {line: 6, character: 4}
+  thatMark:
+    - type: UntypedTarget
+      contentRange:
+        start: {line: 1, character: 0}
+        end: {line: 3, character: 1}
+      isReversed: false
+      hasExplicitRange: true
+    - type: UntypedTarget
+      contentRange:
+        start: {line: 6, character: 0}
+        end: {line: 8, character: 1}
+      isReversed: false
+      hasExplicitRange: true

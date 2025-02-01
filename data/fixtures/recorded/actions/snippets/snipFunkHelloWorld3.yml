@@ -5,11 +5,14 @@ command:
   action:
     name: insertSnippet
     snippetDescription:
-      type: named
-      name: functionDeclaration
-      substitutions: {name: hello world}
+      type: custom
+      body: "function $name($parameterList) {\n\t$body\n}"
+      scopeTypes:
+        - {type: statement}
+      substitutions: {name: helloWorld}
     destination: {type: implicit}
   usePrePhraseSnapshot: true
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: ""
   selections:

@@ -1,9 +1,9 @@
 import type {
+  CustomInsertSnippetArg,
+  CustomWrapWithSnippetArg,
   SimpleScopeTypeType,
-  SnippetDefinition,
   SnippetScope,
 } from "@cursorless/common";
-import type { SnippetOrigin } from "./mergeSnippets";
 
 /**
  * Compares two snippet definitions by how specific their scope, breaking
@@ -12,23 +12,26 @@ import type { SnippetOrigin } from "./mergeSnippets";
  * @param b The other snippet definition to compare
  * @returns A negative number if a should come before b, a positive number if b
  */
-export function compareSnippetDefinitions(
-  a: SnippetDefinitionWithOrigin,
-  b: SnippetDefinitionWithOrigin,
-): number {
-  const scopeComparision = compareSnippetScopes(
-    a.definition.scope,
-    b.definition.scope,
+export function compareSnippetDefinitions<
+  T extends CustomInsertSnippetArg | CustomWrapWithSnippetArg,
+>(a: T, b: T): number {
+  return compareSnippetScopes(
+    getScopeFromSnippetDescription(a),
+    getScopeFromSnippetDescription(b),
   );
+}
 
-  // Prefer the more specific snippet definition, no matter the origin
-  if (scopeComparision !== 0) {
-    return scopeComparision;
+function getScopeFromSnippetDescription(
+  snippet: CustomInsertSnippetArg | CustomWrapWithSnippetArg,
+): SnippetScope | undefined {
+  if (snippet.languages != null) {
+    return {
+      langIds: snippet.languages,
+      // Note what is called scopeTypes in the snippet arg is the
+      // insertion scope. Not scope to match against like with the
+      // function/method snippet example.
+    };
   }
-
-  // If the scopes are the same, prefer the snippet from the higher priority
-  // origin
-  return a.origin - b.origin;
 }
 
 function compareSnippetScopes(
@@ -87,9 +90,4 @@ function compareScopeTypes(
   }
 
   return 0;
-}
-
-interface SnippetDefinitionWithOrigin {
-  origin: SnippetOrigin;
-  definition: SnippetDefinition;
 }

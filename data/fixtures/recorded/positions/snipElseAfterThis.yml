@@ -4,7 +4,11 @@ command:
   spokenForm: snippet else after this
   action:
     name: insertSnippet
-    snippetDescription: {type: named, name: elseStatement}
+    snippetDescription:
+      type: custom
+      body: "else:\n\t$body"
+      scopeTypes:
+        - {type: branch}
     destination:
       type: primitive
       insertionMode: after
@@ -12,7 +16,7 @@ command:
         type: primitive
         mark: {type: cursor}
   usePrePhraseSnapshot: true
-spokenFormError: Named insertion snippet 'elseStatement'
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: |
     if True:

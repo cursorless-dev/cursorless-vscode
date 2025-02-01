@@ -146,13 +146,25 @@ interface NamedInsertSnippetArg {
   name: string;
   substitutions?: Record<string, string>;
 }
-interface CustomInsertSnippetArg {
+
+export interface CustomInsertSnippetArg {
   type: "custom";
   body: string;
+  languages?: string[];
   scopeTypes?: ScopeType[];
   substitutions?: Record<string, string>;
 }
-export type InsertSnippetArg = NamedInsertSnippetArg | CustomInsertSnippetArg;
+
+interface ListInsertSnippetArg {
+  type: "list";
+  substitutions?: Record<string, string>;
+  snippets: CustomInsertSnippetArg[];
+}
+
+export type InsertSnippetArg =
+  | NamedInsertSnippetArg
+  | CustomInsertSnippetArg
+  | ListInsertSnippetArg;
 
 export interface InsertSnippetActionDescriptor {
   name: "insertSnippet";
@@ -165,15 +177,24 @@ interface NamedWrapWithSnippetArg {
   name: string;
   variableName: string;
 }
-interface CustomWrapWithSnippetArg {
+
+export interface CustomWrapWithSnippetArg {
   type: "custom";
   body: string;
   variableName?: string;
   scopeType?: ScopeType;
+  languages?: string[];
 }
+
+interface ListWrapWithSnippetArg {
+  type: "list";
+  snippets: CustomWrapWithSnippetArg[];
+}
+
 export type WrapWithSnippetArg =
   | NamedWrapWithSnippetArg
-  | CustomWrapWithSnippetArg;
+  | CustomWrapWithSnippetArg
+  | ListWrapWithSnippetArg;
 
 export interface WrapWithSnippetActionDescriptor {
   name: "wrapWithSnippet";

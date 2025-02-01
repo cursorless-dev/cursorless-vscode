@@ -1,15 +1,13 @@
-import type { ScopeType, WrapWithSnippetArg } from "@cursorless/common";
+import type { WrapWithSnippetArg } from "@cursorless/common";
 import { FlashStyle } from "@cursorless/common";
 import type { Snippets } from "../core/Snippets";
+import { getPreferredSnippet } from "../core/getPreferredSnippet";
 import type { RangeUpdater } from "../core/updateSelections/RangeUpdater";
 import { performEditsAndUpdateSelections } from "../core/updateSelections/updateSelections";
 import type { ModifierStageFactory } from "../processTargets/ModifierStageFactory";
 import { ModifyIfUntypedStage } from "../processTargets/modifiers/ConditionalModifierStages";
 import { ide } from "../singletons/ide.singleton";
-import {
-  findMatchingSnippetDefinitionStrict,
-  transformSnippetVariables,
-} from "../snippets/snippet";
+import { transformSnippetVariables } from "../snippets/transformSnippetVariables";
 import { SnippetParser } from "../snippets/vendor/vscodeSnippet/snippetParser";
 import type { Target } from "../typings/target.types";
 import { ensureSingleEditor, flashTargets } from "../util/targetUtils";
@@ -26,10 +24,14 @@ export default class WrapWithSnippet {
     this.run = this.run.bind(this);
   }
 
-  getFinalStages(snippet: WrapWithSnippetArg) {
-    const defaultScopeType = this.getScopeType(snippet);
+  getFinalStages(targets: Target[], snippetDescription: WrapWithSnippetArg) {
+    const editor = ensureSingleEditor(targets);
+    const snippet = getPreferredSnippet(
+      snippetDescription,
+      editor.document.languageId,
+    );
 
-    if (defaultScopeType == null) {
+    if (snippet.scopeType == null) {
       return [];
     }
 
@@ -38,51 +40,10 @@ export default class WrapWithSnippet {
         type: "modifyIfUntyped",
         modifier: {
           type: "containingScope",
-          scopeType: defaultScopeType,
+          scopeType: snippet.scopeType,
         },
       }),
     ];
-  }
-
-  private getScopeType(
-    snippetDescription: WrapWithSnippetArg,
-  ): ScopeType | undefined {
-    if (snippetDescription.type === "named") {
-      const { name, variableName } = snippetDescription;
-
-      const snippet = this.snippets.getSnippetStrict(name);
-
-      const variables = snippet.variables ?? {};
-      const scopeTypeType = variables[variableName]?.wrapperScopeType;
-      return scopeTypeType == null
-        ? undefined
-        : {
-            type: scopeTypeType,
-          };
-    } else {
-      return snippetDescription.scopeType;
-    }
-  }
-
-  private getBody(
-    snippetDescription: WrapWithSnippetArg,
-    targets: Target[],
-  ): string {
-    if (snippetDescription.type === "named") {
-      const { name } = snippetDescription;
-
-      const snippet = this.snippets.getSnippetStrict(name);
-
-      const definition = findMatchingSnippetDefinitionStrict(
-        this.modifierStageFactory,
-        targets,
-        snippet.definitions,
-      );
-
-      return definition.body.join("\n");
-    } else {
-      return snippetDescription.body;
-    }
   }
 
   async run(
@@ -90,12 +51,14 @@ export default class WrapWithSnippet {
     snippetDescription: WrapWithSnippetArg,
   ): Promise<ActionReturnValue> {
     const editor = ide().getEditableTextEditor(ensureSingleEditor(targets));
+    const snippet = getPreferredSnippet(
+      snippetDescription,
+      editor.document.languageId,
+    );
 
-    const body = this.getBody(snippetDescription, targets);
+    const parsedSnippet = this.snippetParser.parse(snippet.body);
 
-    const parsedSnippet = this.snippetParser.parse(body);
-
-    transformSnippetVariables(parsedSnippet, snippetDescription.variableName);
+    transformSnippetVariables(parsedSnippet, snippet.variableName);
 
     const snippetString = parsedSnippet.toTextmateString();
 
@@ -103,14 +66,11 @@ export default class WrapWithSnippet {
 
     const targetSelections = targets.map((target) => target.contentSelection);
 
-    const callback = () =>
-      editor.insertSnippet(snippetString, targetSelections);
-
     const { targetSelections: updatedTargetSelections } =
       await performEditsAndUpdateSelections({
         rangeUpdater: this.rangeUpdater,
         editor,
-        callback,
+        callback: () => editor.insertSnippet(snippetString, targetSelections),
         preserveCursorSelections: true,
         selections: {
           targetSelections,

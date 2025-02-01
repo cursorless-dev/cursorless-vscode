@@ -175,6 +175,7 @@ export class CommandRunnerImpl implements CommandRunner {
 
       case "insertSnippet":
         this.finalStages = this.actions.insertSnippet.getFinalStages(
+          this.getDestinations(actionDescriptor.destination),
           actionDescriptor.snippetDescription,
         );
         return this.actions.insertSnippet.run(
@@ -184,6 +185,7 @@ export class CommandRunnerImpl implements CommandRunner {
 
       case "wrapWithSnippet":
         this.finalStages = this.actions.wrapWithSnippet.getFinalStages(
+          this.getTargets(actionDescriptor.target),
           actionDescriptor.snippetDescription,
         );
         return this.actions.wrapWithSnippet.run(

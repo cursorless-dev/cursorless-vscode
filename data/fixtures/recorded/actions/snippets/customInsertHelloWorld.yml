@@ -10,7 +10,7 @@ command:
       substitutions: {hole2: hello world}
     destination: {type: implicit}
   usePrePhraseSnapshot: true
-spokenFormError: Custom insertion snippet
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: ""
   selections:

@@ -3,7 +3,6 @@ export * from "./CommandHistory";
 export * from "./CommandHistoryAnalyzer";
 export * from "./CommandRunner";
 export * from "./core/commandVersionUpgrades/canonicalizeAndValidateCommand";
-export * from "./core/mergeSnippets";
 export * from "./core/Snippets";
 export * from "./core/StoredTargets";
 export * from "./cursorlessEngine";

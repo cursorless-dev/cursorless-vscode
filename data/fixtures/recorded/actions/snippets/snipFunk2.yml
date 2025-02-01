@@ -4,9 +4,10 @@ command:
   spokenForm: snippet funk
   action:
     name: insertSnippet
-    snippetDescription: {type: named, name: functionDeclaration}
+    snippetDescription: {type: custom, body: "function $name($parameterList) {\n\t$body\n}"}
     destination: {type: implicit}
   usePrePhraseSnapshot: true
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: ""
   selections:

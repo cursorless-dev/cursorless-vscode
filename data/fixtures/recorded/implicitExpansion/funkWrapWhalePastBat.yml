@@ -4,7 +4,11 @@ command:
   spokenForm: funk wrap whale past bat
   action:
     name: wrapWithSnippet
-    snippetDescription: {type: named, name: functionDeclaration, variableName: body}
+    snippetDescription:
+      type: custom
+      variableName: body
+      scopeType: {type: statement}
+      body: "function $name($parameterList) {\n\t$body\n}"
     target:
       type: range
       anchor:
@@ -16,6 +20,7 @@ command:
       excludeAnchor: false
       excludeActive: false
   usePrePhraseSnapshot: true
+spokenFormError: custom wrap with snippet
 initialState:
   documentContents: |
     const whatever = "hello";

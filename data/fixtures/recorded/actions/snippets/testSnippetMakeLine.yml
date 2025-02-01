@@ -4,6 +4,7 @@ command:
   spokenForm: test snippet make line
   action:
     name: generateSnippet
+    directory: ""
     snippetName: testSnippet
     target:
       type: primitive
@@ -19,32 +20,18 @@ initialState:
       active: {line: 0, character: 12}
   marks: {}
 finalState:
-  documentContents: |-
-    {
-      "testSnippet": {
-        "definitions": [
-          {
-            "scope": {
-              "langIds": [
-                "plaintext"
-              ]
-            },
-            "body": [
-              "\\textbf{\\$$variable1}"
-            ]
-          }
-        ],
-        "description": "",
-        "variables": {
-          "variable1": {}
-        }
-      }
-    }
+  documentContents: |
+    name: testSnippet
+    language: plaintext
+    phrase: 
+
+    $0.wrapperPhrase: 
+    -
+    \textbf{\$$0}
+    ---
   selections:
-    - anchor: {line: 10, character: 24}
-      active: {line: 10, character: 33}
-    - anchor: {line: 16, character: 7}
-      active: {line: 16, character: 16}
+    - anchor: {line: 2, character: 8}
+      active: {line: 2, character: 8}
   thatMark:
     - type: UntypedTarget
       contentRange:

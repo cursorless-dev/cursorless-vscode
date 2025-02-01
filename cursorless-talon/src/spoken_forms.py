@@ -147,7 +147,6 @@ def update():
         handle_csv("special_marks.csv"),
         handle_csv("scope_visualizer.csv"),
         handle_csv("experimental/experimental_actions.csv"),
-        handle_csv("experimental/miscellaneous.csv"),
         handle_csv(
             "modifier_scope_types.csv",
             pluralize_lists=[
@@ -165,6 +164,7 @@ def update():
             ],
             default_list_name="scope_type",
         ),
+        # DEPRECATED @ 2025-02-01
         handle_csv(
             "experimental/wrapper_snippets.csv",
             allow_unknown_values=True,
@@ -180,6 +180,8 @@ def update():
             allow_unknown_values=True,
             default_list_name="insertion_snippet_single_phrase",
         ),
+        handle_csv("experimental/miscellaneous.csv"),
+        # ---
         handle_csv(
             "experimental/actions_custom.csv",
             headers=[SPOKEN_FORM_HEADER, "VSCode command"],

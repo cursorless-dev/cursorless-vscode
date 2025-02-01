@@ -114,9 +114,16 @@ function sanitizeActionInPlace(action: ActionDescriptor): void {
 
     // Remove substitutions and custom body
     case "insertSnippet":
-      delete action.snippetDescription.substitutions;
       if (action.snippetDescription.type === "custom") {
         action.snippetDescription.body = "";
+        delete action.snippetDescription.substitutions;
+      } else if (action.snippetDescription.type === "list") {
+        for (const snippet of action.snippetDescription.snippets) {
+          snippet.body = "";
+          delete snippet.substitutions;
+        }
+      } else {
+        delete action.snippetDescription.substitutions;
       }
       break;
 

@@ -4,7 +4,11 @@ command:
   spokenForm: if wrap token fine
   action:
     name: wrapWithSnippet
-    snippetDescription: {type: named, name: ifStatement, variableName: consequence}
+    snippetDescription:
+      type: custom
+      variableName: consequence
+      body: "if ($condition) {\n\t$consequence\n}"
+      scopeType: {type: statement}
     target:
       type: primitive
       modifiers:
@@ -12,6 +16,7 @@ command:
           scopeType: {type: token}
       mark: {type: decoratedSymbol, symbolColor: default, character: f}
   usePrePhraseSnapshot: false
+spokenFormError: custom wrap with snippet
 initialState:
   documentContents: |
     const foo = "hello";

@@ -25,10 +25,15 @@ async function runTest() {
   await hatTokenMap.allocateHats();
 
   await runCursorlessCommand({
-    version: 4,
-    action: { name: "wrapWithSnippet", args: ["spaghetti.foo"] },
-    targets: [
-      {
+    version: 7,
+    action: {
+      name: "wrapWithSnippet",
+      snippetDescription: {
+        type: "custom",
+        body: "My friend $foo likes to eat spaghetti!",
+        variableName: "foo",
+      },
+      target: {
         type: "primitive",
         mark: {
           type: "decoratedSymbol",
@@ -36,7 +41,7 @@ async function runTest() {
           character: "h",
         },
       },
-    ],
+    },
     usePrePhraseSnapshot: false,
   });
 

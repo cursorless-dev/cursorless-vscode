@@ -5,11 +5,14 @@ command:
   action:
     name: insertSnippet
     snippetDescription:
-      type: named
-      name: functionDeclaration
-      substitutions: {name: cello world}
+      type: custom
+      body: "$name($parameterList) {\n\t$body\n}"
+      scopeTypes:
+        - {type: statement}
+      substitutions: {name: celloWorld}
     destination: {type: implicit}
   usePrePhraseSnapshot: true
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: |-
     class Aaa {

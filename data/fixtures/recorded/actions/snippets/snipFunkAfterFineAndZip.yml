@@ -4,7 +4,11 @@ command:
   spokenForm: snippet funk after fine and zip
   action:
     name: insertSnippet
-    snippetDescription: {type: named, name: functionDeclaration}
+    snippetDescription:
+      type: custom
+      body: "function $name($parameterList) {\n\t$body\n}"
+      scopeTypes:
+        - {type: statement}
     destination:
       type: primitive
       insertionMode: after
@@ -16,6 +20,7 @@ command:
           - type: primitive
             mark: {type: decoratedSymbol, symbolColor: default, character: z}
   usePrePhraseSnapshot: true
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: |-
     const foo = "bar";

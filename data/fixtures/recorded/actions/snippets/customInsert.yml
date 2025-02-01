@@ -7,7 +7,7 @@ command:
     snippetDescription: {type: custom, body: 'dummy snippet hole1: ($hole1), hole2: ($hole2)'}
     destination: {type: implicit}
   usePrePhraseSnapshot: true
-spokenFormError: Custom insertion snippet
+spokenFormError: custom insertion snippet
 initialState:
   documentContents: ""
   selections:
