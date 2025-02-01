@@ -24,9 +24,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       APP_VERSION: ${{ matrix.app_version }}
-      # FIXME: https://github.com/cursorless-dev/cursorless/issues/2793
-      # NEOVIM_VERSION: ${{ matrix.app_version == 'stable' && 'stable' || 'v0.10.0' }}
-      NEOVIM_VERSION: ${{ matrix.app_version == 'stable' && 'v0.10.3' || 'v0.10.0' }}
+      NEOVIM_VERSION: ${{ matrix.app_version == 'stable' && 'stable' || 'v0.10.0' }}
       VSCODE_CRASH_DIR: ${{ github.workspace }}/artifacts/dumps
       VSCODE_LOGS_DIR: ${{ github.workspace }}/artifacts/logs
       CURSORLESS_REPO_ROOT: ${{ github.workspace }}
