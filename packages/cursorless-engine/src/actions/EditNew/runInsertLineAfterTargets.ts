@@ -25,7 +25,7 @@ export async function runInsertLineAfterTargets(
 ): Promise<State> {
   const destinations: EditDestination[] = state.destinations
     .map((destination, index) => {
-      const actionType = destination.getEditNewActionType();
+      const actionType = state.actionTypes[index];
       if (actionType === "insertLineAfter") {
         return {
           destination,
@@ -84,6 +84,7 @@ export async function runInsertLineAfterTargets(
         destination.target.withContentRange(updatedTargetRanges[index]),
       ),
     ),
+    actionTypes: state.actionTypes,
     thatRanges: updatedThatRanges,
     cursorRanges,
   };

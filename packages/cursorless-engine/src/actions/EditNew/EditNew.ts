@@ -35,6 +35,7 @@ export class EditNew {
      */
     let state: State = {
       destinations,
+      actionTypes: destinations.map((d) => d.getEditNewActionType()),
       thatRanges: destinations.map(
         ({ target }) => target.thatTarget.contentRange,
       ),
@@ -63,9 +64,14 @@ export class EditNew {
       !useInsertLineAfter,
     );
 
-    const newSelections = state.destinations.map((destination, index) =>
-      state.cursorRanges[index]!.toSelection(destination.target.isReversed),
-    );
+    const newSelections = state.destinations.map((destination, index) => {
+      const cursorRange = state.cursorRanges[index];
+      if (cursorRange == null) {
+        throw Error("Cursor range is undefined for destination");
+      }
+      return cursorRange.toSelection(destination.target.isReversed);
+    });
+
     await editableEditor.setSelections(newSelections, { focusEditor: true });
 
     return {

@@ -26,7 +26,7 @@ export async function runEditTargets(
 ): Promise<State> {
   const destinations: EditDestination[] = state.destinations
     .map((destination, index) => {
-      if (useAllDestinations || destination.getEditNewActionType() === "edit") {
+      if (useAllDestinations || state.actionTypes[index] === "edit") {
         return {
           destination,
           index,
@@ -90,6 +90,7 @@ export async function runEditTargets(
 
   return {
     destinations: state.destinations,
+    actionTypes: state.actionTypes,
     thatRanges: updatedThatRanges,
     cursorRanges: finalCursorRanges,
   };

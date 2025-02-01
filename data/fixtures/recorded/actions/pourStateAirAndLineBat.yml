@@ -1,0 +1,62 @@
+languageId: typescript
+command:
+  version: 7
+  spokenForm: pour state air and line bat
+  action:
+    name: editNewLineAfter
+    target:
+      type: list
+      elements:
+        - type: primitive
+          mark: {type: decoratedSymbol, symbolColor: default, character: a}
+          modifiers:
+            - type: containingScope
+              scopeType: {type: statement}
+        - type: primitive
+          mark: {type: decoratedSymbol, symbolColor: default, character: b}
+          modifiers:
+            - type: containingScope
+              scopeType: {type: line}
+  usePrePhraseSnapshot: false
+initialState:
+  documentContents: |
+    function aaa() {
+    }
+
+    // bbb
+  selections:
+    - anchor: {line: 4, character: 0}
+      active: {line: 4, character: 0}
+  marks:
+    default.a:
+      start: {line: 0, character: 9}
+      end: {line: 0, character: 12}
+    default.b:
+      start: {line: 3, character: 3}
+      end: {line: 3, character: 6}
+finalState:
+  documentContents: |+
+    function aaa() {
+    }
+
+
+    // bbb
+
+  selections:
+    - anchor: {line: 2, character: 0}
+      active: {line: 2, character: 0}
+    - anchor: {line: 5, character: 0}
+      active: {line: 5, character: 0}
+  thatMark:
+    - type: UntypedTarget
+      contentRange:
+        start: {line: 0, character: 0}
+        end: {line: 1, character: 1}
+      isReversed: false
+      hasExplicitRange: true
+    - type: UntypedTarget
+      contentRange:
+        start: {line: 4, character: 0}
+        end: {line: 4, character: 6}
+      isReversed: false
+      hasExplicitRange: true
